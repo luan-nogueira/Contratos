@@ -34,8 +34,8 @@
   --header-h: 72px;
 
   /* Button Overrides */
-  --btn-secondary: #1e293b;
-  --btn-secondary-text: #f8fafc;
+  --btn-secondary: #334155;
+  --btn-secondary-text: #ffffff;
 }
 
 :root[data-theme="light"] {
@@ -653,17 +653,16 @@ input::placeholder{
 
 .btn:active { transform: translateY(0); }
 
-.btn.secondary{
-  background: var(--btn-secondary);
-  color: var(--btn-secondary-text);
+.btn.secondary {
+  background-color: var(--btn-secondary) !important;
+  color: var(--btn-secondary-text) !important;
   box-shadow: none;
-  border: 1px solid var(--border);
+  border: 1px solid var(--border) !important;
 }
 
 .btn.secondary:hover {
-  background: var(--border);
-  border-color: var(--border-strong);
-  color: var(--text);
+  background-color: var(--muted) !important;
+  color: #ffffff !important;
 }
 
 .btn.danger{ 
