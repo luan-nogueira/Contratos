@@ -32,6 +32,10 @@
   /* Layout */
   --sidebar-w: 290px;
   --header-h: 72px;
+
+  /* Button Overrides */
+  --btn-secondary: #1e293b;
+  --btn-secondary-text: #f8fafc;
 }
 
 :root[data-theme="light"] {
@@ -49,6 +53,9 @@
   --shadow-sm: 0 4px 12px rgba(15, 23, 42, 0.04);
   --shadow-md: 0 12px 24px -6px rgba(15, 23, 42, 0.08);
   --shadow-lg: 0 24px 48px -12px rgba(15, 23, 42, 0.12);
+  
+  --btn-secondary: #e2e8f0;
+  --btn-secondary-text: #0f172a;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; outline-color: var(--digital-red); }
@@ -654,8 +661,9 @@ input::placeholder{
 }
 
 .btn.secondary:hover {
-  background: #2d3748;
+  background: var(--border);
   border-color: var(--border-strong);
+  color: var(--text);
 }
 
 .btn.danger{ 
