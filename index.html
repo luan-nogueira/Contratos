@@ -3802,10 +3802,22 @@ var state;
 </script>
 
 <script>
-function setActiveSidebarLinkByTarget(targetId) {
+function setActiveSidebarLinkByTarget(targetId, contractId) {
   const sidebarLinks = Array.from(document.querySelectorAll(".sidebar-nav .sidebar-link[data-target]"));
+  const activeContract = contractId || (state ? state.contratoAtual : null);
+
   sidebarLinks.forEach((item) => {
-    item.classList.toggle("is-active", item.dataset.target === targetId);
+    const isSameTarget = item.dataset.target === targetId;
+    const itemContract = item.dataset.contract;
+    
+    let active = isSameTarget;
+    
+    // Se for uma seção compartilhada (como presença), verifica também o contrato
+    if (isSameTarget && itemContract && activeContract) {
+      active = (itemContract === activeContract);
+    }
+    
+    item.classList.toggle("is-active", active);
   });
 }
 
@@ -3832,7 +3844,7 @@ function navigateToSection(event, targetId, contractValue) {
     syncContratoUI(contractValue);
   }
 
-  setActiveSidebarLinkByTarget(targetId);
+  setActiveSidebarLinkByTarget(targetId, contractValue);
 
   window.requestAnimationFrame(() => {
     const target = document.getElementById(targetId);
@@ -3915,7 +3927,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
 
     if (visible?.target?.id) {
-      setActiveSidebarLinkByTarget(visible.target.id);
+      setActiveSidebarLinkByTarget(visible.target.id, state.contratoAtual);
     }
   }, {
     rootMargin: "-15% 0px -55% 0px",
