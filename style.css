@@ -3971,3 +3971,41 @@ body{
   .config-aside { display: none; }
   .config-content { height: 100vh; border-radius: 0; }
 }
+
+/* --- Action Buttons in Settings Table --- */
+.btn-group-mini {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--card-2);
+  color: var(--text-dim);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s;
+}
+
+.btn-icon svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+.btn-icon:hover {
+  background: var(--glass);
+  color: var(--text);
+  border-color: var(--digital-red-glow);
+}
+
+.btn-icon.danger:hover {
+  background: var(--digital-red-glow);
+  color: var(--digital-red);
+  border-color: var(--digital-red);
+}
