@@ -2926,6 +2926,11 @@ tbody tr:hover{
   color: var(--digital-red);
 }
 
+.config-table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
 .config-table-scroll {
   max-height: 450px;
   overflow-y: auto;
@@ -3687,6 +3692,7 @@ body{
   flex-direction: column;
   background: var(--bg);
   height: 100%;
+  min-height: 0; /* Essencial para scroll interno em grid/flex */
 }
 
 .config-main-head {
@@ -3726,7 +3732,9 @@ body{
 .config-scroll-area {
   flex: 1;
   overflow-y: auto;
+  overflow-x: hidden;
   padding: 40px;
+  -webkit-overflow-scrolling: touch;
 }
 
 .premium-form-card {
@@ -3893,6 +3901,12 @@ body{
   width: 20px;
   height: 20px;
   fill: var(--muted);
+}
+
+.config-table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .modern-table {
