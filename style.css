@@ -3901,27 +3901,34 @@ body{
 }
 
 .modern-table th {
-  padding: 16px 24px;
+  padding: 16px 20px;
   background: var(--card-2);
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 1px;
   color: var(--muted);
   text-align: left;
+  white-space: nowrap;
 }
 
 .modern-table td {
-  padding: 18px 24px;
+  padding: 14px 20px;
   border-bottom: 1px solid var(--border);
+  vertical-align: middle;
 }
 
+.modern-table tr:last-child td { border-bottom: none; }
+.modern-table tr:hover td { background: rgba(255, 255, 255, 0.01); }
+
 .role-badge {
+  display: inline-flex;
   padding: 4px 10px;
   border-radius: 6px;
   font-size: 11px;
   font-weight: 800;
   background: rgba(255, 255, 255, 0.05);
   color: var(--text-dim);
+  white-space: nowrap;
 }
 
 .role-badge.admin {
@@ -3932,22 +3939,25 @@ body{
 .contract-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 4px;
+  gap: 6px;
+  max-width: 200px;
 }
 
 .tag-mini {
-  padding: 2px 6px;
-  background: var(--glass);
+  padding: 3px 8px;
+  background: var(--card-2);
   border: 1px solid var(--border);
-  border-radius: 4px;
+  border-radius: 6px;
   font-size: 10px;
+  font-weight: 600;
   color: var(--muted);
+  white-space: nowrap;
 }
 
 .status-dot {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   font-size: 12px;
   font-weight: 700;
 }
@@ -3960,10 +3970,15 @@ body{
 }
 
 .status-dot.active { color: #10b981; }
-.status-dot.active::before { background: #10b981; box-shadow: 0 0 8px #10b981; }
+.status-dot.active::before { background: #10b981; box-shadow: 0 0 8px rgba(16, 185, 129, 0.4); }
 
 .status-dot.inactive { color: var(--muted); }
 .status-dot.inactive::before { background: var(--muted); }
+
+.row-actions {
+  text-align: right;
+  width: 100px;
+}
 
 /* Mobile Config */
 @media (max-width: 900px) {

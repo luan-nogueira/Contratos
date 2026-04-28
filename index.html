@@ -2836,10 +2836,10 @@ var state;
         <td><div class="contract-tags">${(item.allowedContracts || []).map(c => `<span class="tag-mini">${nomeContratoBonito(c)}</span>`).join("") || "—"}</div></td>
         <td class="row-actions">
           <div class="btn-group-mini">
-            <button class="btn-icon" onclick="editarAcesso('${item.id}')" title="Editar Usuário">
+            <button class="btn-icon" onclick="editarAcessoUsuario('${item.id}')" title="Editar Usuário">
               <svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a.996.996 0 0 0 0-1.41l-2.34-2.34a.996.996 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
             </button>
-            <button class="btn-icon danger" onclick="excluirAcesso('${item.id}')" title="Remover Acesso">
+            <button class="btn-icon danger" onclick="excluirAcessoUsuario('${item.id}')" title="Remover Acesso">
               <svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
             </button>
           </div>
@@ -2847,19 +2847,7 @@ var state;
       `;
       const td = tr.querySelector(".row-actions");
 
-      [
-        { cls: "btn secondary small", label: "Editar", fn: () => editarAcessoUsuario(item.id) },
-        { cls: "btn secondary small", label: "Resetar senha", fn: () => resetarSenhaUsuario(item.email) },
-        { cls: item.ativo === false ? "btn small" : "btn danger small", label: item.ativo === false ? "Ativar" : "Bloquear", fn: () => alternarStatusAcesso(item.id, item.ativo === false) },
-        { cls: "btn danger small", label: "Apagar", fn: () => excluirAcessoUsuario(item.id) }
-      ].forEach(a => {
-        const b = document.createElement("button");
-        b.className = a.cls;
-        b.type = "button";
-        b.textContent = a.label;
-        b.onclick = a.fn;
-        td.appendChild(b);
-      });
+      // Os botões de ação agora são definidos diretamente no innerHTML acima via btn-group-mini
 
       tbody.appendChild(tr);
     });
@@ -2958,6 +2946,10 @@ var state;
   window.criarPrimeiroAcesso = criarPrimeiroAcesso;
   window.salvarAcessoUsuario = salvarAcessoUsuario;
   window.limparFormularioUsuario = limparFormularioUsuario;
+  window.editarAcessoUsuario = editarAcessoUsuario;
+  window.excluirAcessoUsuario = excluirAcessoUsuario;
+  window.alternarStatusAcesso = alternarStatusAcesso;
+  window.resetarSenhaUsuario = resetarSenhaUsuario;
 
   function renderChipsDiario() {
     const wrap = $("chipsDiario");
