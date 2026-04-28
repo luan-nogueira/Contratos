@@ -34,8 +34,8 @@
   --header-h: 72px;
 
   /* Button Overrides */
-  --btn-secondary: #334155;
-  --btn-secondary-text: #ffffff;
+  --btn-secondary-bg: #1e293b;
+  --btn-secondary-text: #f8fafc;
 }
 
 :root[data-theme="light"] {
@@ -54,7 +54,7 @@
   --shadow-md: 0 12px 24px -6px rgba(15, 23, 42, 0.08);
   --shadow-lg: 0 24px 48px -12px rgba(15, 23, 42, 0.12);
   
-  --btn-secondary: #e2e8f0;
+  --btn-secondary-bg: #e2e8f0;
   --btn-secondary-text: #0f172a;
 }
 
@@ -554,6 +554,38 @@ input::placeholder{
   color: var(--muted);
 }
 
+.input-icon {
+  position: relative;
+  width: 100%;
+}
+
+.input-icon input {
+  padding-right: 48px;
+}
+
+.icon-btn {
+  position: absolute;
+  right: 6px;
+  top: 6px;
+  bottom: 6px;
+  width: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  border-radius: 10px;
+  transition: 0.2s;
+  z-index: 2;
+}
+
+.icon-btn:hover {
+  background: var(--border-strong);
+  color: var(--text);
+}
+
 /* KPIs Display */
 .dashboard-kpis {
   display: flex;
@@ -654,15 +686,14 @@ input::placeholder{
 .btn:active { transform: translateY(0); }
 
 .btn.secondary {
-  background-color: var(--btn-secondary) !important;
-  color: var(--btn-secondary-text) !important;
+  background: var(--btn-secondary-bg);
+  color: var(--btn-secondary-text);
   box-shadow: none;
-  border: 1px solid var(--border) !important;
+  border: 1px solid var(--border);
 }
 
 .btn.secondary:hover {
-  background-color: var(--muted) !important;
-  color: #ffffff !important;
+  filter: brightness(0.9);
 }
 
 .btn.danger{ 
