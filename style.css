@@ -363,8 +363,11 @@ h1, h2, h3, h4 {
   color: #fff;
 }
 
-.sidebar-link.is-active small {
-  color: rgba(255, 255, 255, 0.8);
+.sidebar-icon-img {
+  width: 24px;
+  height: 24px;
+  object-fit: cover;
+  border-radius: 6px;
 }
 
 .topbar{
