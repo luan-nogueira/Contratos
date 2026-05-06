@@ -170,7 +170,7 @@ h1, h2, h3, h4 {
 }
 .btn-primary { background: var(--accent-gradient); color: white; box-shadow: 0 4px 14px var(--digital-red-glow); }
 .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px var(--digital-red-glow); filter: brightness(1.1); }
-.btn-secondary { background: var(--card-2); color: var(--text); border-color: var(--border); }
+.btn-secondary { background: var(--btn-secondary-bg); color: var(--btn-secondary-text); border-color: var(--border); }
 .btn-secondary:hover { background: var(--border); border-color: var(--border-strong); }
 
 /* Login Page Modernization */
@@ -2537,21 +2537,7 @@ input:focus, select:focus, textarea:focus{
   box-shadow:0 0 0 4px rgba(54,99,245,.10);
 }
 
-.btn{
-  min-height:46px;
-  padding:11px 18px;
-  border-radius:14px;
-  box-shadow:0 14px 24px rgba(203,51,68,.18);
-}
 
-.btn.secondary{
-  background:linear-gradient(180deg, #2b3142, #1f2532);
-}
-
-.btn.small{
-  min-height:38px;
-  padding:8px 12px;
-}
 
 .table-wrap,
 table{
