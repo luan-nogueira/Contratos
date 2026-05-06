@@ -272,6 +272,7 @@
             <thead>
               <tr>
                 <th>Data</th>
+                <th class="col-local" style="display:none;">Local</th>
                 <th>Pessoas</th>
               </tr>
             </thead>
@@ -406,6 +407,17 @@
         <input id="dataDia" type="date" style="font-size:16px; font-weight:600;" />
       </div>
 
+      <div class="field" id="fieldLocalAtendimento" style="display:none;">
+        <label>Local de Atendimento</label>
+        <select id="localAtendimento" style="font-size:16px; font-weight:600;">
+          <option value="">Selecione o local</option>
+          <option value="Technip Platinum">Technip Platinum</option>
+          <option value="Technip DFC">Technip DFC</option>
+          <option value="Technip SpoolBase">Technip SpoolBase</option>
+          <option value="Technip Fábrica">Technip Fábrica</option>
+        </select>
+      </div>
+
       <div class="field">
         <label>Colaboradores Selecionados</label>
         <div class="chips" id="chipsDiario" style="margin-bottom:20px;"></div>
@@ -436,6 +448,7 @@
       <thead>
         <tr>
           <th>Data</th>
+          <th class="col-local" style="display:none;">Local</th>
           <th>Pessoas</th>
           <th>Ações</th>
         </tr>
@@ -1780,6 +1793,10 @@ var state;
     show("printFerroport", isFerroport);
     show("printPTA", isPTA);
 
+    const isTechnip = state.contratoAtual === "technip";
+    show("fieldLocalAtendimento", isTechnip);
+    document.querySelectorAll(".col-local").forEach(el => el.style.display = isTechnip ? "table-cell" : "none");
+
     if (isPTA) {
       if ($("ptaData") && !$("ptaData").value) $("ptaData").value = hojeISO();
       setTimeout(ptaInitAssinatura, 80);
@@ -1798,7 +1815,7 @@ var state;
     desligarRealtime();
 
     state.unsub.diarios = state.refs.diarios.onSnapshot((snap) => {
-      state.LISTA = snap.docs.map(d => d.data());
+      state.LISTA = snap.docs.map(d => ({ id: d.id, ...d.data() }));
       carregarDiario();
       atualizarPainel();
     }, (err) => alert("Erro diários:\n\n" + (err?.message || err)));
@@ -3026,9 +3043,16 @@ var state;
       if (!data) return alert("Selecione a data.");
       if (!state.selecaoDiaria.length) return alert("Selecione pelo menos uma pessoa.");
 
-      await state.refs.diarios.doc(data).set({
+      const local = $("localAtendimento")?.value || "";
+      if (state.contratoAtual === "technip" && !local) return alert("Selecione o local de atendimento.");
+
+      const docId = state.contratoAtual === "technip" ? `${data}_${idSeguro(local)}` : data;
+
+      await state.refs.diarios.doc(docId).set({
+        id: docId,
         dataISO: data,
         dataBR: formatarDataBR(data),
+        localAtendimento: local,
         pessoas: [...state.selecaoDiaria]
       });
 
@@ -3041,6 +3065,7 @@ var state;
 
   function limparDiario(silencioso = false) {
     if ($("dataDia")) $("dataDia").value = hojeISO();
+    if ($("localAtendimento")) $("localAtendimento").value = "";
     state.selecaoDiaria = [];
     renderChipsDiario();
     if (!silencioso && $("novoNome")) $("novoNome").value = "";
@@ -3062,9 +3087,11 @@ var state;
     const visiveis = state.mostrarTodosRegistros ? dados : dados.slice(0, CONFIG.limites.registros);
 
     visiveis.forEach(item => {
+      const isTechnip = state.contratoAtual === "technip";
       const tr = document.createElement("tr");
       tr.innerHTML = `
         <td>${item.dataBR || formatarDataBR(item.dataISO)}</td>
+        <td class="col-local" style="display:${isTechnip ? 'table-cell' : 'none'}">${item.localAtendimento || "—"}</td>
         <td>${Array.isArray(item.pessoas) ? item.pessoas.join(", ") : ""}</td>
         <td class="row-actions"></td>
       `;
@@ -3077,6 +3104,7 @@ var state;
       btnEditar.textContent = "Editar";
       btnEditar.onclick = () => {
         $("dataDia").value = item.dataISO || hojeISO();
+        if ($("localAtendimento")) $("localAtendimento").value = item.localAtendimento || "";
         state.selecaoDiaria = Array.isArray(item.pessoas) ? [...item.pessoas] : [];
         renderChipsDiario();
         $("sectionPresenca")?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -3088,7 +3116,7 @@ var state;
         btnExcluir.className = "btn danger small";
         btnExcluir.type = "button";
         btnExcluir.textContent = "Excluir";
-        btnExcluir.onclick = () => excluirRegistroDiario(item.dataISO);
+        btnExcluir.onclick = () => excluirRegistroDiario(item.id || item.dataISO);
         td.appendChild(btnExcluir);
       }
 
@@ -3098,12 +3126,12 @@ var state;
     atualizarBotaoVerMais();
   }
 
-  async function excluirRegistroDiario(dataISO) {
+  async function excluirRegistroDiario(docId) {
     try {
       if (!state.isAdmin) return alert("Apenas Gestor pode excluir registros.");
-      if (!dataISO) return;
-      if (!confirm(`Excluir o registro do dia ${formatarDataBR(dataISO)}?`)) return;
-      await state.refs.diarios.doc(dataISO).delete();
+      if (!docId) return;
+      if (!confirm("Excluir este registro?")) return;
+      await state.refs.diarios.doc(docId).delete();
       alert("Registro excluído.");
     } catch (e) {
       console.error(e);
@@ -3165,9 +3193,16 @@ var state;
     const tbody = $("tabelaMes");
     if (tbody) {
       tbody.innerHTML = "";
+      const isTechnip = state.contratoAtual === "technip";
       const vis = state.mostrarTodosMes ? itensMes : itensMes.slice(0, CONFIG.limites.mes);
       vis.forEach(item => {
-        tbody.innerHTML += `<tr><td>${item.dataBR || formatarDataBR(item.dataISO)}</td><td>${Array.isArray(item.pessoas) ? item.pessoas.join(", ") : ""}</td></tr>`;
+        tbody.innerHTML += `
+          <tr>
+            <td>${item.dataBR || formatarDataBR(item.dataISO)}</td>
+            <td class="col-local" style="display:${isTechnip ? 'table-cell' : 'none'}">${item.localAtendimento || "—"}</td>
+            <td>${Array.isArray(item.pessoas) ? item.pessoas.join(", ") : ""}</td>
+          </tr>
+        `;
       });
 
       const btn = $("btnVerMaisMes");
