@@ -2017,41 +2017,26 @@ var state;
   function openGaleria(payload = {}) {
     const { dataBR, condutor, fotos } = payload;
     txt("galeriaSub", `${dataBR || "—"} • ${condutor || "—"}`);
-    html("galeriaGrid", "");
     const grid = $("galeriaGrid");
     if (!grid) return;
 
     const items = [
-      { label: "Frente",           src: fotos?.fotoFrente  || fotos?.fotoFrente  || "" },
-      { label: "Traseira",         src: fotos?.fotoTras    || fotos?.fotoTras    || "" },
-      { label: "Lateral Esquerda", src: fotos?.fotoLatEsq  || fotos?.fotoLatEsq  || "" },
-      { label: "Lateral Direita",  src: fotos?.fotoLatDir  || fotos?.fotoLatDir  || "" }
+      { label: "Frente",           src: fotos?.fotoFrente  || "" },
+      { label: "Traseira",         src: fotos?.fotoTras    || "" },
+      { label: "Lateral Esquerda", src: fotos?.fotoLatEsq  || "" },
+      { label: "Lateral Direita",  src: fotos?.fotoLatDir  || "" }
     ];
 
-    items.forEach((it) => {
-      const card = document.createElement("div");
-      card.className = "galeria-card";
-      card.innerHTML = `<div class="galeria-label">${it.label}</div>`;
-
-      if (it.src) {
-        const img = document.createElement("img");
-        img.className = "galeria-img";
-        img.alt = it.label;
-        img.loading = "lazy";
-        img.decoding = "async";
-        img.onclick = () => openImgModal(it.src);
-        // Error fallback: show "Sem imagem" if URL is broken
-        img.onerror = () => {
-          img.remove();
-          card.innerHTML += `<div class="galeria-empty">📷 Imagem indisponível</div>`;
-        };
-        img.src = it.src;
-        card.appendChild(img);
-      } else {
-        card.innerHTML += `<div class="galeria-empty">📷 Sem imagem</div>`;
-      }
-      grid.appendChild(card);
-    });
+    grid.innerHTML = items.map(f => f.src
+      ? `<div class="galeria-card">
+           <div class="galeria-label">${f.label}</div>
+           <img class="galeria-img" src="${f.src}" alt="${f.label}" onclick="openImgModal('${f.src.replace(/'/g, "\\'")}')">
+         </div>`
+      : `<div class="galeria-card">
+           <div class="galeria-label">${f.label}</div>
+           <div class="galeria-empty">📷 Sem imagem</div>
+         </div>`
+    ).join("");
 
     // Use flex (the CSS .galeria-modal requires display:flex to center content)
     const modal = $("galeriaModal");
@@ -2524,7 +2509,8 @@ var state;
         : `<div class="galeria-card"><div class="galeria-label">${f.label}</div><div class="galeria-empty">Sem foto</div></div>`
       ).join("");
     }
-    show("galeriaModal", true, "block");
+    const modal = $("galeriaModal");
+    if (modal) { modal.style.display = "flex"; modal.setAttribute("aria-hidden", "false"); }
   }
 
   function carregarTabelaVeiculosLeves() {
