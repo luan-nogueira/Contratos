@@ -2036,9 +2036,21 @@ var state;
       if (it.src) {
         const img = document.createElement("img");
         img.className = "galeria-img";
-        // Do not use loading="lazy" or onerror to avoid Safari bugs with huge base64 strings
-        img.src = it.src;
         img.alt = it.label;
+        
+        // Debugging fallback: If it fails, show the URL so we can see what's wrong
+        img.onerror = () => {
+          img.remove();
+          const debugUrl = it.src.substring(0, 40) + (it.src.length > 40 ? "..." : "");
+          card.innerHTML += `
+            <div class="galeria-empty" style="flex-direction:column; gap:4px; padding:10px; text-align:center;">
+              <span style="color:var(--digital-red)">Erro ao carregar</span>
+              <a href="${it.src}" target="_blank" style="font-size:10px; word-break:break-all; color:var(--info);">Ver link</a>
+              <span style="font-size:9px; color:#888">${debugUrl}</span>
+            </div>`;
+        };
+        
+        img.src = it.src;
         img.onclick = () => openImgModal(it.src);
         card.appendChild(img);
       } else {
