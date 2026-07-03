@@ -982,6 +982,8 @@ tbody tr:hover {
   justify-content:center;
   color:var(--muted);
   background:var(--card);
+  font-size:13px;
+  gap:6px;
 }
 
 /* CONFIGURAÇÕES */
@@ -1212,7 +1214,43 @@ tbody tr:hover {
   .kpi-value{ font-size:18px; }
 
   .preview-img{ height:150px; }
-  .galeria-img, .galeria-empty{ height:180px; }
+  .galeria-img, .galeria-empty{ height:200px; }
+
+  /* Galeria full-screen on mobile */
+  .galeria-modal{
+    padding: 0 !important;
+    align-items: flex-end !important;
+  }
+  .galeria-content{
+    width: 100vw !important;
+    max-width: 100vw !important;
+    max-height: 92vh !important;
+    border-radius: 20px 20px 0 0 !important;
+    margin-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  .galeria-head{
+    padding: 16px 20px !important;
+  }
+  .galeria-body{
+    padding: 16px !important;
+  }
+  .galeria-grid{
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+  .galeria-img, .galeria-empty{
+    height: 130px !important;
+    border-radius: 8px !important;
+  }
+  .galeria-card{
+    padding: 8px !important;
+    border-radius: 10px !important;
+  }
+  .galeria-close{
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 22px !important;
+  }
 
   .check-grid{ grid-template-columns:1fr; }
   .w-mini{ width:56px; }
