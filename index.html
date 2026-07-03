@@ -2017,6 +2017,7 @@ var state;
   function openGaleria(payload = {}) {
     const { dataBR, condutor, fotos } = payload;
     txt("galeriaSub", `${dataBR || "—"} • ${condutor || "—"}`);
+    html("galeriaGrid", "");
     const grid = $("galeriaGrid");
     if (!grid) return;
 
@@ -2027,18 +2028,25 @@ var state;
       { label: "Lateral Direita",  src: fotos?.fotoLatDir  || "" }
     ];
 
-    grid.innerHTML = items.map(f => f.src
-      ? `<div class="galeria-card">
-           <div class="galeria-label">${f.label}</div>
-           <img class="galeria-img" src="${f.src}" alt="${f.label}" onclick="openImgModal('${f.src.replace(/'/g, "\\'")}')">
-         </div>`
-      : `<div class="galeria-card">
-           <div class="galeria-label">${f.label}</div>
-           <div class="galeria-empty">📷 Sem imagem</div>
-         </div>`
-    ).join("");
+    items.forEach((it) => {
+      const card = document.createElement("div");
+      card.className = "galeria-card";
+      card.innerHTML = `<div class="galeria-label">${it.label}</div>`;
 
-    // Use flex (the CSS .galeria-modal requires display:flex to center content)
+      if (it.src) {
+        const img = document.createElement("img");
+        img.className = "galeria-img";
+        // Do not use loading="lazy" or onerror to avoid Safari bugs with huge base64 strings
+        img.src = it.src;
+        img.alt = it.label;
+        img.onclick = () => openImgModal(it.src);
+        card.appendChild(img);
+      } else {
+        card.innerHTML += `<div class="galeria-empty">📷 Sem imagem</div>`;
+      }
+      grid.appendChild(card);
+    });
+
     const modal = $("galeriaModal");
     if (modal) { modal.style.display = "flex"; modal.setAttribute("aria-hidden", "false"); }
   }
