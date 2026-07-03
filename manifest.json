@@ -1,0 +1,21 @@
+{
+  "name": "Gestão Operacional Digital",
+  "short_name": "Digital Contratos",
+  "description": "Sistema unificado para controle de contratos, presenças e vistorias.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b0d11",
+  "theme_color": "#e11d48",
+  "icons": [
+    {
+      "src": "/logo-digital.png",
+      "sizes": "any",
+      "type": "image/png"
+    },
+    {
+      "src": "/logo-digital.png",
+      "sizes": "any",
+      "type": "image/png"
+    }
+  ]
+}

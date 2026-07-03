@@ -1,0 +1,141 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function authEmail() {
+      return signedIn() && request.auth.token.email != null
+        ? lower(request.auth.token.email)
+        : "";
+    }
+
+    function userPath() {
+      return /databases/$(database)/documents/users/$(request.auth.uid);
+    }
+
+    function hasUserDoc() {
+      return signedIn() && exists(userPath());
+    }
+
+    function userData() {
+      return get(userPath()).data;
+    }
+
+    function accessPathByEmail(email) {
+      return /databases/$(database)/documents/access_by_email/$(email);
+    }
+
+    function hasAccessDocByEmail(email) {
+      return exists(accessPathByEmail(email));
+    }
+
+    function ownAccessDocExists() {
+      return signedIn() && hasAccessDocByEmail(authEmail());
+    }
+
+    function isOwnUser(uid) {
+      return signedIn() && request.auth.uid == uid;
+    }
+
+    function isActiveUser() {
+      return hasUserDoc()
+        && (
+          !("ativo" in userData()) ||
+          userData().ativo == true
+        );
+    }
+
+    function isGestor() {
+      return isActiveUser()
+        && ("role" in userData())
+        && userData().role == "gestor";
+    }
+
+    function canAccessContract(contractId) {
+      return isActiveUser()
+        && ("allowedContracts" in userData())
+        && userData().allowedContracts is list
+        && userData().allowedContracts.hasAny([contractId]);
+    }
+
+    function ownProfileMatchesOwnAccessDoc() {
+      return ownAccessDocExists()
+        && request.resource.data.email == authEmail();
+    }
+
+    function onlyUpdatingOwnLastAccess() {
+      return resource != null
+        && request.resource.data.diff(resource.data).changedKeys().hasOnly([
+          "ultimoAcessoEm"
+        ]);
+    }
+
+    function onlyUpdatingOwnAuthorizedProfileFields() {
+      return resource != null
+        && ownProfileMatchesOwnAccessDoc()
+        && request.resource.data.diff(resource.data).changedKeys().hasOnly([
+          "nome",
+          "email",
+          "role",
+          "allowedContracts",
+          "ativo",
+          "atualizadoEm",
+          "ultimoAcessoEm"
+        ]);
+    }
+
+    function onlyUpdatingOwnAccessLastSeen(email) {
+      return signedIn()
+        && authEmail() == email
+        && resource != null
+        && request.resource.data.diff(resource.data).changedKeys().hasOnly([
+          "ultimoAcessoEm"
+        ]);
+    }
+
+    match /users/{uid} {
+      allow read: if signedIn() && (isOwnUser(uid) || isGestor());
+
+      allow create: if isOwnUser(uid)
+        && ownAccessDocExists()
+        && ownProfileMatchesOwnAccessDoc();
+
+      allow update: if isGestor()
+        || (isOwnUser(uid) && onlyUpdatingOwnLastAccess())
+        || (isOwnUser(uid) && onlyUpdatingOwnAuthorizedProfileFields());
+
+      allow delete: if isGestor();
+    }
+
+    match /access_by_email/{email} {
+      allow get: if true;
+      allow list: if isGestor();
+      allow create, delete: if isGestor();
+
+      allow update: if isGestor()
+        || onlyUpdatingOwnAccessLastSeen(email);
+    }
+
+    match /contratos/{contractId} {
+      allow read: if canAccessContract(contractId);
+
+      match /nomes/{nomeId} {
+        allow read, create, update: if canAccessContract(contractId);
+        allow delete: if isGestor();
+      }
+
+      match /diarios/{docId} {
+        allow read, create, update: if canAccessContract(contractId);
+        allow delete: if isGestor();
+      }
+
+      match /ptauso/{docId} {
+        allow read, create, update: if canAccessContract(contractId);
+        allow delete: if isGestor();
+      }
+    }
+  }
+}
