@@ -1,4 +1,4 @@
-const CACHE_NAME = 'digital-contratos-v4';
+const CACHE_NAME = 'digital-contratos-v5';
 const ASSETS = [
   '/',
   '/index.html',
