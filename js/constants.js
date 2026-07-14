@@ -16,7 +16,13 @@ export const CHECK_ITEMS = [
   "Kit de Primeiros Socorros",
   "Anemômetro na PTA",
   "Anemômetro funcional",
-  "Calibração do anemômetro em dia"
+  "Calibração do anemômetro em dia",
+  "Sistema elétrico",
+  "Vazamentos de mangueiras e conexões",
+  "Nível de óleo hidráulico baixo",
+  "Mangueira em bom estado",
+  "Cilindro em bom estado",
+  "Maçaneta em bom estado"
 ];
 
 export const VEICULOS_LEVES = [

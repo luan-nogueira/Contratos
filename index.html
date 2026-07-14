@@ -621,6 +621,68 @@
       <p class="muted tiny">Marque um status por item. Se não se aplica, use N/A.</p>
     </div>
 
+    <div class="divider"></div>
+    <div class="section-title animate-fade">
+      <div class="badge">ACESSÓRIOS E SINALIZAÇÃO</div>
+      <div>
+        <h3>Controle de Acessórios do Munck</h3>
+        <p class="muted small">Informe os detalhes de quantidade, tamanho/capacidade e estado de conservação.</p>
+      </div>
+    </div>
+    
+    <div class="field">
+      <div class="table-wrap">
+        <table class="table-compact">
+          <thead>
+            <tr>
+              <th style="width: 35%">Acessório</th>
+              <th style="width: 15%">Qtd</th>
+              <th style="width: 30%">Especificação (Tam/Ton/Comp)</th>
+              <th style="width: 20%; text-align:center;">Bom Estado?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Cintas de Içamento</td>
+              <td><input id="acCintasQtd" type="number" inputmode="numeric" /></td>
+              <td><input id="acCintasEsp" type="text" placeholder="Ex: 5T / 3m" /></td>
+              <td class="center"><select id="acCintasEstado"><option value="">-</option><option value="Sim">Sim</option><option value="Não">Não</option></select></td>
+            </tr>
+            <tr>
+              <td>Correntes e Cabo Guia</td>
+              <td><input id="acCorrentesQtd" type="number" inputmode="numeric" /></td>
+              <td><input id="acCorrentesEsp" type="text" placeholder="Ex: 2T / 10m" /></td>
+              <td class="center"><select id="acCorrentesEstado"><option value="">-</option><option value="Sim">Sim</option><option value="Não">Não</option></select></td>
+            </tr>
+            <tr>
+              <td>Cinta de Amarração</td>
+              <td><input id="acAmarQtd" type="number" inputmode="numeric" /></td>
+              <td><input id="acAmarEsp" type="text" placeholder="Ex: 3T / 5m" /></td>
+              <td class="center"><select id="acAmarEstado"><option value="">-</option><option value="Sim">Sim</option><option value="Não">Não</option></select></td>
+            </tr>
+            <tr>
+              <td>Manilhas</td>
+              <td><input id="acManilhaQtd" type="number" inputmode="numeric" /></td>
+              <td><input id="acManilhaEsp" type="text" placeholder="Ex: 5/8 pol" /></td>
+              <td class="center"><select id="acManilhaEstado"><option value="">-</option><option value="Sim">Sim</option><option value="Não">Não</option></select></td>
+            </tr>
+            <tr>
+              <td>Cones</td>
+              <td><input id="acConesQtd" type="number" inputmode="numeric" /></td>
+              <td><input id="acConesEsp" type="text" placeholder="N/A" disabled style="opacity:0.5;"/></td>
+              <td class="center"><select id="acConesEstado"><option value="">-</option><option value="Sim">Sim</option><option value="Não">Não</option></select></td>
+            </tr>
+            <tr>
+              <td>Pedestais</td>
+              <td><input id="acPedestaisQtd" type="number" inputmode="numeric" /></td>
+              <td><input id="acPedestaisEsp" type="text" placeholder="N/A" disabled style="opacity:0.5;"/></td>
+              <td class="center"><select id="acPedestaisEstado"><option value="">-</option><option value="Sim">Sim</option><option value="Não">Não</option></select></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
     <div class="field">
       <label>Observações</label>
       <textarea id="ptaObs" rows="4" placeholder="Registre avarias, riscos, vazamentos, observações gerais..."></textarea>
@@ -1522,7 +1584,13 @@ var state;
     "Kit de Primeiros Socorros",
     "Anemômetro na PTA",
     "Anemômetro funcional",
-    "Calibração do anemômetro em dia"
+    "Calibração do anemômetro em dia",
+    "Sistema elétrico",
+    "Vazamentos de mangueiras e conexões",
+    "Nível de óleo hidráulico baixo",
+    "Mangueira em bom estado",
+    "Cilindro em bom estado",
+    "Maçaneta em bom estado"
   ];
 
   const VEICULOS_LEVES = [
@@ -2264,6 +2332,44 @@ var state;
     $("patolaTE").value = v.traseiroEsquerdo || "";
   }
 
+  const getAcessorios = () => ({
+    cintasQtd: $("acCintasQtd")?.value?.trim() || "",
+    cintasEsp: $("acCintasEsp")?.value?.trim() || "",
+    cintasEstado: $("acCintasEstado")?.value?.trim() || "",
+    correntesQtd: $("acCorrentesQtd")?.value?.trim() || "",
+    correntesEsp: $("acCorrentesEsp")?.value?.trim() || "",
+    correntesEstado: $("acCorrentesEstado")?.value?.trim() || "",
+    amarQtd: $("acAmarQtd")?.value?.trim() || "",
+    amarEsp: $("acAmarEsp")?.value?.trim() || "",
+    amarEstado: $("acAmarEstado")?.value?.trim() || "",
+    manilhaQtd: $("acManilhaQtd")?.value?.trim() || "",
+    manilhaEsp: $("acManilhaEsp")?.value?.trim() || "",
+    manilhaEstado: $("acManilhaEstado")?.value?.trim() || "",
+    conesQtd: $("acConesQtd")?.value?.trim() || "",
+    conesEstado: $("acConesEstado")?.value?.trim() || "",
+    pedestaisQtd: $("acPedestaisQtd")?.value?.trim() || "",
+    pedestaisEstado: $("acPedestaisEstado")?.value?.trim() || ""
+  });
+
+  function setAcessorios(v = {}) {
+    if ($("acCintasQtd")) $("acCintasQtd").value = v.cintasQtd || "";
+    if ($("acCintasEsp")) $("acCintasEsp").value = v.cintasEsp || "";
+    if ($("acCintasEstado")) $("acCintasEstado").value = v.cintasEstado || "";
+    if ($("acCorrentesQtd")) $("acCorrentesQtd").value = v.correntesQtd || "";
+    if ($("acCorrentesEsp")) $("acCorrentesEsp").value = v.correntesEsp || "";
+    if ($("acCorrentesEstado")) $("acCorrentesEstado").value = v.correntesEstado || "";
+    if ($("acAmarQtd")) $("acAmarQtd").value = v.amarQtd || "";
+    if ($("acAmarEsp")) $("acAmarEsp").value = v.amarEsp || "";
+    if ($("acAmarEstado")) $("acAmarEstado").value = v.amarEstado || "";
+    if ($("acManilhaQtd")) $("acManilhaQtd").value = v.manilhaQtd || "";
+    if ($("acManilhaEsp")) $("acManilhaEsp").value = v.manilhaEsp || "";
+    if ($("acManilhaEstado")) $("acManilhaEstado").value = v.manilhaEstado || "";
+    if ($("acConesQtd")) $("acConesQtd").value = v.conesQtd || "";
+    if ($("acConesEstado")) $("acConesEstado").value = v.conesEstado || "";
+    if ($("acPedestaisQtd")) $("acPedestaisQtd").value = v.pedestaisQtd || "";
+    if ($("acPedestaisEstado")) $("acPedestaisEstado").value = v.pedestaisEstado || "";
+  }
+
   function atualizarTextoContratoChecklist() {
     const nome = nomeContratoBonito(state.contratoAtual);
     const isIveco = state.contratoAtual === "iveco-sem-pta";
@@ -2409,6 +2515,15 @@ var state;
       if (hasError) {
         toast("Preencha todos os campos obrigatórios.", "warning");
         $("cardVeiculosLeves")?.scrollIntoView({ behavior: "smooth", block: "start" });
+        return;
+      }
+
+      const itensFaltantesLeves = [];
+      CHECK_ITEMS_LEVES.forEach((label, idx) => {
+        if (!itens[`it_${idx}`]) itensFaltantesLeves.push(label);
+      });
+      if (itensFaltantesLeves.length > 0) {
+        alert("Por favor, responda a todos os itens do checklist. Faltam:\n\n- " + itensFaltantesLeves.join("\n- "));
         return;
       }
 
@@ -4106,6 +4221,7 @@ var state;
     txt("fuelPct", "50%");
 
     setPatolas({});
+    setAcessorios({});
     CHECK_ITEMS.forEach((_, idx) => {
       const sel = document.querySelector(`input[name="it_${idx}"]:checked`);
       if (sel) sel.checked = false;
@@ -4161,6 +4277,7 @@ var state;
       const combustivel = Number($("ptaCombustivel")?.value || 0);
       const patolas = getPatolas();
       const checklistRapido = getChecklistRapidoValues();
+      const acessorios = getAcessorios();
       const observacoes = $("ptaObs")?.value?.trim() || "";
       const ptaKitOqueFalta = $("ptaKitOqueFalta")?.value?.trim() || "";
 
@@ -4172,6 +4289,15 @@ var state;
       if (!local) return alert("Informe o local da atividade.");
       if (!descricao) return alert("Informe a descrição da atividade.");
       if (!assinatura || assinatura.length < 100) return alert("Faça a assinatura no campo abaixo.");
+
+      const itensFaltantesPTA = [];
+      CHECK_ITEMS.forEach((label, idx) => {
+        if (!checklistRapido[`it_${idx}`]) itensFaltantesPTA.push(label);
+      });
+      if (itensFaltantesPTA.length > 0) {
+        if (btn) { btn.disabled = false; btn.textContent = "💾 Salvar registro"; }
+        return alert("Por favor, responda a todos os itens da Checagem Rápida. Faltam:\n\n- " + itensFaltantesPTA.join("\n- "));
+      }
 
       const fFrente = $("ptaFotoFrente")?.files?.[0] || null;
       const fTras = $("ptaFotoTras")?.files?.[0] || null;
@@ -4227,7 +4353,7 @@ var state;
         fotoTras: fotosUrls.fotoTras || "",
         fotoLatEsq: fotosUrls.fotoLatEsq || "",
         fotoLatDir: fotosUrls.fotoLatDir || "",
-        checklist: { tipoChecagem, horimetro, combustivel, patolas, checklistRapido, observacoes, kitOqueFalta: ptaKitOqueFalta },
+        checklist: { tipoChecagem, horimetro, combustivel, patolas, acessorios, checklistRapido, observacoes, kitOqueFalta: ptaKitOqueFalta },
         atualizadoEm: agoraISO()
       };
 
@@ -4345,6 +4471,7 @@ var state;
               txt("fuelPct", `${$("ptaCombustivel").value}%`);
             }
             setPatolas(c.patolas || {});
+            setAcessorios(c.acessorios || {});
             setChecklistRapidoValues(c.checklistRapido || {});
             const inp = $("ptaKitOqueFalta");
             if (inp) inp.value = c.kitOqueFalta || "";
