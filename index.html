@@ -111,7 +111,7 @@
     <div style="margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px dashed rgba(255,255,255,0.15); display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; font-size: 0.8rem;">
       <a href="#modalPoliticaPrivacidade" onclick="abrirModalPrivacidade(event)" style="color: #38bdf8; text-decoration: none; font-weight: 600; padding: 0.35rem 0.75rem; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 0.5rem; transition: all 0.2s;">🔒 Política de Privacidade</a>
       <a href="#modalTermosUso" onclick="abrirModalTermos(event)" style="color: #38bdf8; text-decoration: none; font-weight: 600; padding: 0.35rem 0.75rem; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 0.5rem; transition: all 0.2s;">📄 Termos de Uso</a>
-      <a href="#secaoArtigosPublicos" style="color: #34d399; text-decoration: none; font-weight: 600; padding: 0.35rem 0.75rem; background: rgba(52, 211, 153, 0.1); border: 1px solid rgba(52, 211, 153, 0.2); border-radius: 0.5rem; transition: all 0.2s;">📚 Central de Conhecimento</a>
+      <a href="#modalCentralConhecimento" onclick="abrirModalConhecimento(event)" style="color: #34d399; text-decoration: none; font-weight: 600; padding: 0.35rem 0.75rem; background: rgba(52, 211, 153, 0.1); border: 1px solid rgba(52, 211, 153, 0.2); border-radius: 0.5rem; transition: all 0.2s;">📚 Central de Conhecimento</a>
     </div>
   </div>
 
@@ -241,11 +241,48 @@
   </div>
 </div>
 
+<!-- Modal Central de Conhecimento -->
+<div id="modalCentralConhecimento" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,0.85); backdrop-filter:blur(8px); padding:2rem 1rem; overflow-y:auto;">
+  <div style="max-width:850px; margin:1.5rem auto; background:#0f172a; border:1px solid #1e293b; border-radius:1rem; padding:2rem; color:#cbd5e1; font-size:0.875rem; line-height:1.6; position:relative;">
+    <button onclick="fecharModalConhecimento()" style="position:absolute; top:1rem; right:1rem; background:#1e293b; border:none; color:#ffffff; padding:0.5rem 0.75rem; border-radius:0.5rem; cursor:pointer; font-weight:700;">✕ Fechar</button>
+    
+    <span style="font-size:0.75rem; color:#60a5fa; font-weight:700; text-transform:uppercase;">Central de Conhecimento & Informações</span>
+    <h3 style="font-size:1.6rem; font-weight:800; color:#ffffff; margin:0.5rem 0 1rem 0;">Guias Operacionais & Gestão de Contratos Enterprise</h3>
+    
+    <div style="display:flex; flex-direction:column; gap:1.5rem; margin-top:1.5rem;">
+      <article style="background:rgba(2,6,23,0.6); border:1px solid #1e293b; border-radius:0.75rem; padding:1.25rem;">
+        <h4 style="color:#60a5fa; font-size:1.1rem; margin-bottom:0.5rem;">1. Práticas Recomendadas para Checklists de Equipamentos</h4>
+        <p style="color:#94a3b8; font-size:0.85rem;">A realização diária de inspeção mecânica e checagem de itens de segurança (como pneus, freios, iluminação e sistemas hidráulicos) garante até 35% de redução em custos de manutenção corretiva. Nos contratos Ferroport e TechNip, os relatórios digitais são auditados em tempo real pelo sistema Control Hub.</p>
+      </article>
+
+      <article style="background:rgba(2,6,23,0.6); border:1px solid #1e293b; border-radius:0.75rem; padding:1.25rem;">
+        <h4 style="color:#34d399; font-size:1.1rem; margin-bottom:0.5rem;">2. Controle de Presença e Registro de Equipes Industriais</h4>
+        <p style="color:#94a3b8; font-size:0.85rem;">A alocação de condutores e técnicos em áreas operacionais de alta demanda exige validação rigorosa de credenciais e horários. O módulo de presença permite aos gestores visualizar métricas consolidadas diárias e mensais com total rastreabilidade.</p>
+      </article>
+
+      <article style="background:rgba(2,6,23,0.6); border:1px solid #1e293b; border-radius:0.75rem; padding:1.25rem;">
+        <h4 style="color:#fbbf24; font-size:1.1rem; margin-bottom:0.5rem;">3. Governança e Transparência na Gestão Contratual</h4>
+        <p style="color:#94a3b8; font-size:0.85rem;">A centralização de validades, atas e ordens de serviço em uma única plataforma elimina ruídos de comunicação entre prestadores e contratantes, oferecendo segurança jurídica e operacional para todas as partes envolvidas.</p>
+      </article>
+    </div>
+
+    <!-- Anúncio AdSense no Modal -->
+    <div style="margin-top:2rem; padding:1rem; background:rgba(2,6,23,0.9); border:1px dashed #334155; border-radius:0.5rem; text-align:center; font-size:0.75rem; color:#64748b;">
+      <span>Espaço de Publicidade Recomendada — Google AdSense</span>
+    </div>
+  </div>
+</div>
+
 <script>
   function abrirModalPrivacidade(e) { if (e) e.preventDefault(); document.getElementById('modalPoliticaPrivacidade').style.display = 'block'; }
   function fecharModalPrivacidade() { document.getElementById('modalPoliticaPrivacidade').style.display = 'none'; }
   function abrirModalTermos(e) { if (e) e.preventDefault(); document.getElementById('modalTermosUso').style.display = 'block'; }
   function fecharModalTermos() { document.getElementById('modalTermosUso').style.display = 'none'; }
+  function abrirModalConhecimento(e) { 
+    if (e) e.preventDefault(); 
+    document.getElementById('modalCentralConhecimento').style.display = 'block';
+  }
+  function fecharModalConhecimento() { document.getElementById('modalCentralConhecimento').style.display = 'none'; }
 </script>
 
 <div id="appRoot" style="display:none;">
