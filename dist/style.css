@@ -332,16 +332,10 @@ h1, h2, h3, h4 {
   flex-direction: column;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 100;
-}
-
   padding: 32px 16px;
   position: sticky;
   top: 0;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 100;
 }
 
 .sidebar-brand{
@@ -3182,16 +3176,6 @@ tbody tr:hover{
 }
 
 /* Redesign Login Premium */
-.login-page {
-  background: #0f172a;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-}
-
 .login-bg-animation {
   position: absolute;
   top: 0;
@@ -4071,10 +4055,11 @@ body{
   word-wrap: break-word;
 }
 
-.modern-table th:nth-child(1), .modern-table td:nth-child(1) { width: 35%; } /* Colaborador */
-.modern-table th:nth-child(2), .modern-table td:nth-child(2) { width: 15%; } /* Perfil */
-.modern-table th:nth-child(3), .modern-table td:nth-child(3) { width: 35%; } /* Contratos */
-.modern-table th:nth-child(4), .modern-table td:nth-child(4) { width: 15%; } /* Ações */
+.modern-table th:nth-child(1), .modern-table td:nth-child(1) { width: 44px; text-align: center; } /* Checkbox Lote */
+.modern-table th:nth-child(2), .modern-table td:nth-child(2) { width: 32%; } /* Colaborador */
+.modern-table th:nth-child(3), .modern-table td:nth-child(3) { width: 13%; } /* Perfil */
+.modern-table th:nth-child(4), .modern-table td:nth-child(4) { width: 40%; } /* Contratos */
+.modern-table th:nth-child(5), .modern-table td:nth-child(5) { width: 15%; text-align: center; } /* Ações */
 
 .modern-table tr:hover td { background: rgba(255, 255, 255, 0.02); }
 
@@ -4433,7 +4418,7 @@ canvas.signature-canvas {
 
 .tag-mini.c-ferroport  { background: rgba(59,130,246,0.10) !important; border-color: rgba(59,130,246,0.25) !important; color: #60a5fa !important; }
 .tag-mini.c-technip    { background: rgba(245,158,11,0.10)  !important; border-color: rgba(245,158,11,0.25)  !important; color: #fbbf24 !important; }
-.tag-mini.c-pta        { background: rgba(225,29,72,0.10)   !important; border-color: rgba(225,29,72,0.25)   !important; color: #f87171 !important; }
+.tag-mini.c-pta-inveco { background: rgba(225,29,72,0.10)   !important; border-color: rgba(225,29,72,0.25)   !important; color: #f87171 !important; }
 .tag-mini.c-pta-hilux  { background: rgba(249,115,22,0.10)  !important; border-color: rgba(249,115,22,0.25)  !important; color: #fb923c !important; }
 .tag-mini.c-veiculos-leves  { background: rgba(16,185,129,0.10) !important; border-color: rgba(16,185,129,0.25) !important; color: #34d399 !important; }
 .tag-mini.c-iveco-sem-pta   { background: rgba(139,92,246,0.10)  !important; border-color: rgba(139,92,246,0.25)  !important; color: #a78bfa !important; }

@@ -10,12 +10,8 @@
     {
       "src": "/logo-digital.png",
       "sizes": "any",
-      "type": "image/png"
-    },
-    {
-      "src": "/logo-digital.png",
-      "sizes": "any",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     }
   ]
 }

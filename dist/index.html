@@ -15,6 +15,18 @@
   <link rel="icon" href="logo-digital.png" />
   <link rel="stylesheet" href="style.css" />
 
+  <meta name="description" content="Control Hub — Plataforma de gestão operacional de contratos industriais, controle de presença de equipes, auditoria de contratos Ferroport & TechNip e checklists de frotas e equipamentos." />
+  <meta name="keywords" content="gestão de contratos, segurança industrial, diário de bordo, checklist de equipamentos, controle de presença, ferroport, technip, QSMS, digital tecnologia, emive" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="canonical" href="https://contratos-bice.vercel.app/" />
+  
+  <!-- Open Graph / Meta Social -->
+  <meta property="og:title" content="Control Hub — Gestão de Operações & Contratos Industriais" />
+  <meta property="og:description" content="Plataforma de inteligência operacional e compliance em contratos industriais, checklists preventivos e auditoria de presença." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://contratos-bice.vercel.app/" />
+  <meta property="og:image" content="https://contratos-bice.vercel.app/logo-digital.png" />
+  
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
@@ -37,7 +49,7 @@
 </head>
 <body>
 
-<section class="login-page animate-fade" id="loginBox" style="display: flex; flex-direction: column !important; justify-content: flex-start !important; align-items: center !important; overflow-y: auto !important; min-height: 100vh !important; padding: 30px 16px !important;">
+<section class="login-page animate-fade" id="loginBox">
   <div class="login-bg-animation"></div>
 
   <!-- Botão de tema flutuante no canto superior direito -->
@@ -108,16 +120,18 @@
     <p class="login-footer-text">DIGITAL • EMIVE — Tecnologia e Segurança</p>
 
     <!-- Links Institucionais e Legais Rápidos -->
-    <div style="margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px dashed rgba(255,255,255,0.15); display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; font-size: 0.8rem;">
+    <div style="margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px dashed rgba(255,255,255,0.15); display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap; font-size: 0.8rem;">
       <a href="#modalPoliticaPrivacidade" onclick="abrirModalPrivacidade(event)" style="color: #38bdf8; text-decoration: none; font-weight: 600; padding: 0.35rem 0.75rem; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 0.5rem; transition: all 0.2s;">🔒 Política de Privacidade</a>
       <a href="#modalTermosUso" onclick="abrirModalTermos(event)" style="color: #38bdf8; text-decoration: none; font-weight: 600; padding: 0.35rem 0.75rem; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 0.5rem; transition: all 0.2s;">📄 Termos de Uso</a>
+      <a href="#modalSobreNos" onclick="abrirModalSobre(event)" style="color: #a78bfa; text-decoration: none; font-weight: 600; padding: 0.35rem 0.75rem; background: rgba(167, 139, 250, 0.1); border: 1px solid rgba(167, 139, 250, 0.2); border-radius: 0.5rem; transition: all 0.2s;">🏢 Sobre Nós</a>
+      <a href="#modalContato" onclick="abrirModalContato(event)" style="color: #fbbf24; text-decoration: none; font-weight: 600; padding: 0.35rem 0.75rem; background: rgba(251, 191, 36, 0.1); border: 1px solid rgba(251, 191, 36, 0.2); border-radius: 0.5rem; transition: all 0.2s;">✉️ Contato & DPO</a>
       <a href="#modalCentralConhecimento" onclick="abrirModalConhecimento(event)" style="color: #34d399; text-decoration: none; font-weight: 600; padding: 0.35rem 0.75rem; background: rgba(52, 211, 153, 0.1); border: 1px solid rgba(52, 211, 153, 0.2); border-radius: 0.5rem; transition: all 0.2s;">📚 Central de Conhecimento</a>
     </div>
   </div>
 
   <!-- Indicador para Rolar para Baixo -->
   <div style="text-align: center; margin: 1.5rem 0 0.5rem 0; color: #94a3b8; font-size: 0.8rem; font-weight: 600; display: flex; align-items: center; gap: 0.5rem; justify-content: center; opacity: 0.9;">
-    <span>👇 Role para ver Informações Institucionais & Artigos Operacionais</span>
+    <span>👇 Role para ver Informações Institucionais, Guias Operacionais & AdSense Compliance</span>
   </div>
 
   <!-- Portal Público de Conteúdo Informativo & AdSense Compliance -->
@@ -126,19 +140,19 @@
     <!-- Apresentação do Control Hub -->
     <div style="background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 1rem; padding: 2rem; margin-bottom: 2rem; text-align: center;">
       <span style="display: inline-block; padding: 0.25rem 0.75rem; background: rgba(59, 130, 246, 0.15); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 9999px; color: #60a5fa; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem;">
-        Control Hub — Digital Contratos & Segurança
+        Control Hub — Digital Contratos & Segurança Industrial
       </span>
       <h3 style="font-size: 1.75rem; font-weight: 800; color: #ffffff; margin-bottom: 0.75rem; line-height: 1.3;">
-        Gestão Inteligente de Operações, Equipamentos e Segurança Industrial
+        Plataforma Enterprise de Gestão Operacional, Frotas e Segurança Preventiva
       </h3>
-      <p style="font-size: 0.9rem; color: #94a3b8; max-width: 750px; margin: 0 auto; line-height: 1.6;">
-        O Control Hub é a solução enterprise desenvolvida pela Digital Tecnologia em parceria com a EMIVE Co para monitoramento em tempo real de presença de equipes, checklists operacionais, auditoria de contratos Ferroport & TechNip e gestão preventiva de frotas industriais.
+      <p style="font-size: 0.9rem; color: #94a3b8; max-width: 800px; margin: 0 auto; line-height: 1.6;">
+        O Control Hub é a solução integrada desenvolvida pela Digital Tecnologia em parceria com a EMIVE Co para monitoramento em tempo real de equipes técnicas, gestão preventiva de frotas industriais, auditoria de contratos Ferroport & TechNip e conformidade com normas rígidas de QSMS (Qualidade, Segurança, Meio Ambiente e Saúde).
       </p>
     </div>
 
-    <!-- Banner / Slot de Anúncios AdSense -->
-    <div style="background: rgba(2, 6, 23, 0.9); border: 1px dashed rgba(255,255,255,0.15); border-radius: 0.75rem; padding: 1rem; text-align: center; margin-bottom: 2rem; font-size: 0.75rem; color: #64748b;">
-      <span>Publicidade Recomendada — Google AdSense</span>
+    <!-- Banner / Slot de Anúncios AdSense Responsivo -->
+    <div style="background: rgba(2, 6, 23, 0.9); border: 1px dashed rgba(255,255,255,0.15); border-radius: 0.75rem; padding: 1.25rem; text-align: center; margin-bottom: 2rem; font-size: 0.75rem; color: #64748b;">
+      <span style="display:block; margin-bottom:0.5rem; font-weight:700; color:#94a3b8; text-transform:uppercase; letter-spacing:0.05em;">Publicidade Recomendada — Google AdSense</span>
       <!-- Bloco de Anúncio Automático/Display AdSense -->
       <ins class="adsbygoogle"
            style="display:block"
@@ -149,10 +163,10 @@
       <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
-    <!-- Grade de Artigos Informativos Técnicos (Conteúdo de Alto Valor) -->
+    <!-- Grade de Artigos Informativos Técnicos (Conteúdo Editorial de Alto Valor) -->
     <div style="margin-bottom: 2.5rem;">
       <h4 style="font-size: 1.25rem; font-weight: 700; color: #ffffff; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem;">
-        <span>📖</span> Artigos e Guias Operacionais
+        <span>📖</span> Guias Técnicos e Boas Práticas Operacionais
       </h4>
 
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
@@ -161,11 +175,11 @@
         <article style="background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 0.85rem; padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between;">
           <div>
             <span style="font-size: 0.7rem; color: #60a5fa; font-weight: 700; text-transform: uppercase;">Inspeção & QSMS</span>
-            <h5 style="font-size: 1rem; font-weight: 700; color: #ffffff; margin: 0.5rem 0; line-height: 1.4;">
+            <h5 style="font-size: 1.05rem; font-weight: 700; color: #ffffff; margin: 0.5rem 0; line-height: 1.4;">
               Práticas Recomendadas para Checklists de Equipamentos Operacionais
             </h5>
-            <p style="font-size: 0.8rem; color: #94a3b8; line-height: 1.5; margin-bottom: 1rem;">
-              Saiba como a rotina pré-operacional de checagem mecânica e de segurança reduz falhas críticas em frotas e previne paralisações nos contratos operacionais.
+            <p style="font-size: 0.825rem; color: #94a3b8; line-height: 1.6; margin-bottom: 1rem;">
+              A rotina pré-operacional de checagem mecânica, de sistemas hidráulicos e de segurança reduz em até 35% os custos de manutenção corretiva. Conheça os procedimentos padronizados de verificação para frotas leves e pesadas (PTA, Hilux e Iveco) adotados no sistema Control Hub.
             </p>
           </div>
           <span style="font-size: 0.75rem; color: #38bdf8; font-weight: 600;">Publicado pela Equipe Técnica Digital</span>
@@ -175,11 +189,11 @@
         <article style="background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 0.85rem; padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between;">
           <div>
             <span style="font-size: 0.7rem; color: #34d399; font-weight: 700; text-transform: uppercase;">Gestão de Equipes</span>
-            <h5 style="font-size: 1rem; font-weight: 700; color: #ffffff; margin: 0.5rem 0; line-height: 1.4;">
+            <h5 style="font-size: 1.05rem; font-weight: 700; color: #ffffff; margin: 0.5rem 0; line-height: 1.4;">
               Otimização de Controle de Presença em Contratos Industriais
             </h5>
-            <p style="font-size: 0.8rem; color: #94a3b8; line-height: 1.5; margin-bottom: 1rem;">
-              Metodologias para validação em tempo real de efetivo técnico e condutores em operações de grande porte como Ferroport e TechNip.
+            <p style="font-size: 0.825rem; color: #94a3b8; line-height: 1.6; margin-bottom: 1rem;">
+              Em operações de grande porte como Ferroport e TechNip, a validação em tempo real de efetivo técnico, horários e qualificações é vital. Entenda como o monitoramento digital substitui planilhas manuais e garante auditabilidade contínua.
             </p>
           </div>
           <span style="font-size: 0.75rem; color: #34d399; font-weight: 600;">Consultoria em Operações</span>
@@ -188,56 +202,128 @@
         <!-- Artigo 3 -->
         <article style="background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 0.85rem; padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between;">
           <div>
-            <span style="font-size: 0.7rem; color: #fbbf24; font-weight: 700; text-transform: uppercase;">Compliance & Contratos</span>
-            <h5 style="font-size: 1rem; font-weight: 700; color: #ffffff; margin: 0.5rem 0; line-height: 1.4;">
-              Transparência na Gestão de Contratos Enterprise
+            <span style="font-size: 0.7rem; color: #fbbf24; font-weight: 700; text-transform: uppercase;">Compliance & Governança</span>
+            <h5 style="font-size: 1.05rem; font-weight: 700; color: #ffffff; margin: 0.5rem 0; line-height: 1.4;">
+              Transparência e Rastreabilidade na Gestão de Contratos Enterprise
             </h5>
-            <p style="font-size: 0.8rem; color: #94a3b8; line-height: 1.5; margin-bottom: 1rem;">
-              Como a centralização de relatórios operacionais e auditorias de atas fortalece a governança e o alinhamento contratual entre parceiros.
+            <p style="font-size: 0.825rem; color: #94a3b8; line-height: 1.6; margin-bottom: 1rem;">
+              A centralização de atas de presença, histórico de revisões e relatórios operacionais em nuvem previne divergências contratuais, fortalecendo o alinhamento de governança entre parceiros e prestadores de serviços de tecnologia.
             </p>
           </div>
           <span style="font-size: 0.75rem; color: #fbbf24; font-weight: 600;">Governança & Segurança</span>
         </article>
 
+        <!-- Artigo 4 -->
+        <article style="background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 0.85rem; padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <span style="font-size: 0.7rem; color: #a78bfa; font-weight: 700; text-transform: uppercase;">Manutenção Preventiva</span>
+            <h5 style="font-size: 1.05rem; font-weight: 700; color: #ffffff; margin: 0.5rem 0; line-height: 1.4;">
+              Manutenção Preventiva de Plataformas de Trabalho em Altura (PTA)
+            </h5>
+            <p style="font-size: 0.825rem; color: #94a3b8; line-height: 1.6; margin-bottom: 1rem;">
+              Orientações essenciais sobre inspeção visual diária, teste de botões de emergência, checagem de arneses de segurança e calibração de sensores de carga em plataformas elevatórias Hilux e Iveco.
+            </p>
+          </div>
+          <span style="font-size: 0.75rem; color: #a78bfa; font-weight: 600;">Segurança do Trabalho & NR-35</span>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- Seção FAQ / Perguntas Frequentes -->
+    <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 1rem; padding: 1.75rem; margin-bottom: 2.5rem;">
+      <h4 style="font-size: 1.2rem; font-weight: 700; color: #ffffff; margin-bottom: 1.25rem;">
+        ❓ Perguntas Frequentes sobre a Plataforma Control Hub
+      </h4>
+      <div style="display: flex; flex-direction: column; gap: 1rem; font-size: 0.85rem; color: #94a3b8; line-height: 1.6;">
+        <div>
+          <strong style="color: #e2e8f0; display: block; margin-bottom: 0.25rem;">O que é o sistema Control Hub?</strong>
+          <span>O Control Hub é um software de gestão operacional voltado para o acompanhamento em tempo real de efetivo técnico, controle de frotas e auditoria de contratos industriais da Digital Tecnologia e EMIVE.</span>
+        </div>
+        <div style="border-top: 1px solid rgba(255,255,255,0.05); padding-top: 0.75rem;">
+          <strong style="color: #e2e8f0; display: block; margin-bottom: 0.25rem;">Como funciona o controle de permissões por perfil?</strong>
+          <span>Cada colaborador possui um nível de autoridade (Gestor ou Técnico Operacional) e permissões específicas vinculadas aos contratos habilitados (Ferroport, TechNip, PTA IVECO, PTA Hilux, Veículos Leves).</span>
+        </div>
+        <div style="border-top: 1px solid rgba(255,255,255,0.05); padding-top: 0.75rem;">
+          <strong style="color: #e2e8f0; display: block; margin-bottom: 0.25rem;">Como solicitar liberação de acesso?</strong>
+          <span>O cadastro e liberação de acessos são realizados exclusivamente pelo Gestor Administrativo através do painel de controle do sistema.</span>
+        </div>
       </div>
     </div>
 
     <!-- Rodapé de Conformidade LGPD & AdSense -->
     <footer style="border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 1.5rem; padding-bottom: 2rem; font-size: 0.75rem; color: #64748b; text-align: center; display: flex; flex-direction: column; gap: 0.75rem; align-items: center;">
       <p style="margin: 0;">© 2026 Digital Tecnologia & Segurança • EMIVE Co. Todos os direitos reservados.</p>
-      <p style="max-width: 650px; margin: 0; font-size: 0.7rem; color: #475569; line-height: 1.4;">
-        Este site utiliza cookies essenciais e tecnologias de publicidade de terceiros (Google AdSense) para personalizar e veicular anúncios em páginas públicas. Consulte nossa Política de Privacidade para mais informações.
+      <p style="max-width: 750px; margin: 0; font-size: 0.725rem; color: #475569; line-height: 1.5;">
+        Este site utiliza cookies essenciais e serviços de publicidade de terceiros (Google AdSense) para veiculação de anúncios em páginas públicas de suporte e conhecimento. Consulte nossa Política de Privacidade para entender como seus dados são protegidos de acordo com a LGPD.
       </p>
-      <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+      <div style="display: flex; gap: 1.25rem; flex-wrap: wrap; justify-content: center;">
         <a href="#modalPoliticaPrivacidade" onclick="abrirModalPrivacidade(event)" style="color: #94a3b8; text-decoration: underline;">Política de Privacidade (LGPD)</a>
         <a href="#modalTermosUso" onclick="abrirModalTermos(event)" style="color: #94a3b8; text-decoration: underline;">Termos e Condições de Uso</a>
-        <a href="mailto:contato@digitaltecnologia.com.br" style="color: #94a3b8; text-decoration: underline;">Contato com o Encarregado de Dados</a>
+        <a href="#modalSobreNos" onclick="abrirModalSobre(event)" style="color: #94a3b8; text-decoration: underline;">Sobre Nós</a>
+        <a href="#modalContato" onclick="abrirModalContato(event)" style="color: #94a3b8; text-decoration: underline;">Contato & Encarregado de Dados (DPO)</a>
       </div>
     </footer>
 
   </div>
 </section>
 
-<!-- Modais de Privacidade e Termos de Uso (Conformidade AdSense & LGPD) -->
+<!-- Modais Institucionais (Conformidade Google AdSense & LGPD) -->
 <div id="modalPoliticaPrivacidade" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,0.85); backdrop-filter:blur(8px); padding:2rem 1rem; overflow-y:auto;">
-  <div style="max-width:700px; margin:2rem auto; background:#0f172a; border:1px solid #1e293b; border-radius:1rem; padding:2rem; color:#cbd5e1; font-size:0.875rem; line-height:1.6; position:relative;">
+  <div style="max-width:750px; margin:2rem auto; background:#0f172a; border:1px solid #1e293b; border-radius:1rem; padding:2rem; color:#cbd5e1; font-size:0.875rem; line-height:1.6; position:relative;">
     <button onclick="fecharModalPrivacidade()" style="position:absolute; top:1rem; right:1rem; background:#1e293b; border:none; color:#ffffff; padding:0.5rem 0.75rem; border-radius:0.5rem; cursor:pointer; font-weight:700;">✕ Fechar</button>
     <h3 style="font-size:1.5rem; font-weight:800; color:#ffffff; margin-bottom:1rem;">Política de Privacidade e Cookies</h3>
-    <p>A Digital Tecnologia & Segurança respeita a privacidade de todos os usuários. Esta política descreve o tratamento de dados pessoais de acordo com a LGPD (Lei nº 13.709/2018) e com as políticas do programa Google AdSense.</p>
-    <h4 style="color:#ffffff; margin-top:1.25rem; font-size:1rem;">1. Coleta de Dados e Cookies</h4>
-    <p>Utilizamos cookies essenciais para o funcionamento do sistema e cookies de terceiros para métricas de acesso e veiculação de anúncios personalizados.</p>
-    <h4 style="color:#ffffff; margin-top:1.25rem; font-size:1rem;">2. Cookies do Google AdSense e DART</h4>
-    <p>O Google, como fornecedor de terceiros, utiliza cookies para veicular anúncios neste site. O uso do cookie DART permite que o Google e seus parceiros veiculem anúncios para os usuários com base nas visitas feitas a este e a outros sites na Internet.</p>
-    <p style="font-size:0.75rem; color:#94a3b8; margin-top:1rem;">Dúvidas? Entre em contato pelo e-mail: <strong>privacidade@digitaltecnologia.com.br</strong></p>
+    <p>A <strong>Digital Tecnologia & Segurança</strong> compromete-se a proteger a privacidade de seus usuários e colaboradores em conformidade com a Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018) e com as Políticas para Publicadores do Google.</p>
+    
+    <h4 style="color:#ffffff; margin-top:1.25rem; font-size:1rem;">1. Coleta e Finalidade dos Dados</h4>
+    <p>Coletamos dados necessários para autenticação de acesso (e-mail, nome, matrícula) e logs de uso do sistema para controle de presença e gestão de checklists de segurança. Não compartilhamos dados pessoais com terceiros para fins comerciais não autorizados.</p>
+    
+    <h4 style="color:#ffffff; margin-top:1.25rem; font-size:1rem;">2. Cookies do Google AdSense e Cookie DART</h4>
+    <p>O Google, como fornecedor de terceiros, utiliza cookies para veicular anúncios neste site em seções públicas. O uso do cookie DART permite que o Google e seus parceiros veiculem anúncios com base nas visitas anteriores dos usuários a este e a outros sites na Internet.</p>
+    <p>Os usuários podem desativar a publicidade personalizada acessando as <a href="https://adssettings.google.com" target="_blank" rel="noopener" style="color:#38bdf8;">Configurações de Anúncios do Google</a>.</p>
+
+    <h4 style="color:#ffffff; margin-top:1.25rem; font-size:1rem;">3. Segurança e Direitos dos Titulares</h4>
+    <p>Garantimos aos titulares os direitos de confirmação de tratamento, acesso, correção e eliminação de dados de acordo com os termos da LGPD.</p>
+    
+    <p style="font-size:0.8rem; color:#94a3b8; margin-top:1.5rem; border-top:1px solid #1e293b; padding-top:1rem;">
+      Para esclarecimentos, contate o Encarregado de Proteção de Dados (DPO) através do e-mail: <strong>privacidade@digitaltecnologia.com.br</strong>
+    </p>
   </div>
 </div>
 
 <div id="modalTermosUso" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,0.85); backdrop-filter:blur(8px); padding:2rem 1rem; overflow-y:auto;">
-  <div style="max-width:700px; margin:2rem auto; background:#0f172a; border:1px solid #1e293b; border-radius:1rem; padding:2rem; color:#cbd5e1; font-size:0.875rem; line-height:1.6; position:relative;">
+  <div style="max-width:750px; margin:2rem auto; background:#0f172a; border:1px solid #1e293b; border-radius:1rem; padding:2rem; color:#cbd5e1; font-size:0.875rem; line-height:1.6; position:relative;">
     <button onclick="fecharModalTermos()" style="position:absolute; top:1rem; right:1rem; background:#1e293b; border:none; color:#ffffff; padding:0.5rem 0.75rem; border-radius:0.5rem; cursor:pointer; font-weight:700;">✕ Fechar</button>
     <h3 style="font-size:1.5rem; font-weight:800; color:#ffffff; margin-bottom:1rem;">Termos e Condições de Uso</h3>
-    <p>Ao acessar esta plataforma, você concorda com estes termos. O acesso à área de controle de operações é restrito a colaboradores e credenciados autorizados.</p>
-    <p>Todo o conteúdo público disponibilizado na central de conhecimento é protegido por direitos de propriedade intelectual.</p>
+    <p>Ao acessar e utilizar a plataforma <strong>Control Hub</strong>, o usuário concorda integralmente com estes termos:</p>
+    <ul style="margin-left:1.25rem; margin-top:0.5rem; margin-bottom:1rem;">
+      <li>O acesso ao painel de controle operacional é pessoal, intransferível e restrito a profissionais credenciados.</li>
+      <li>É vedada qualquer tentativa de burlar mecanismos de autenticação ou alterar registros de presença e auditorias sem autorização expressa.</li>
+      <li>O conteúdo público dos guias e documentações técnicas é protegido por direitos autorais da Digital Tecnologia e parceiros associados.</li>
+    </ul>
+    <p>Reservamo-nos o direito de atualizar estes termos periodicamente para manter a conformidade com as legislações vigentes.</p>
+  </div>
+</div>
+
+<div id="modalSobreNos" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,0.85); backdrop-filter:blur(8px); padding:2rem 1rem; overflow-y:auto;">
+  <div style="max-width:750px; margin:2rem auto; background:#0f172a; border:1px solid #1e293b; border-radius:1rem; padding:2rem; color:#cbd5e1; font-size:0.875rem; line-height:1.6; position:relative;">
+    <button onclick="fecharModalSobre()" style="position:absolute; top:1rem; right:1rem; background:#1e293b; border:none; color:#ffffff; padding:0.5rem 0.75rem; border-radius:0.5rem; cursor:pointer; font-weight:700;">✕ Fechar</button>
+    <h3 style="font-size:1.5rem; font-weight:800; color:#ffffff; margin-bottom:1rem;">Sobre a Digital Tecnologia & EMIVE Co.</h3>
+    <p>A <strong>Digital Tecnologia & Segurança</strong> em parceria com a <strong>EMIVE Co</strong> atua no desenvolvimento de soluções avançadas de automação, gestão de frotas industriais, segurança patrimonial e controle de presença técnica para contratos enterprise de grande porte como Ferroport e TechNip.</p>
+    <p style="margin-top:0.75rem;">Nossa missão é garantir máxima eficiência operacional, segurança do trabalho (QSMS) e transparência auditável em cada processo realizado em campo.</p>
+  </div>
+</div>
+
+<div id="modalContato" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,0.85); backdrop-filter:blur(8px); padding:2rem 1rem; overflow-y:auto;">
+  <div style="max-width:750px; margin:2rem auto; background:#0f172a; border:1px solid #1e293b; border-radius:1rem; padding:2rem; color:#cbd5e1; font-size:0.875rem; line-height:1.6; position:relative;">
+    <button onclick="fecharModalContato()" style="position:absolute; top:1rem; right:1rem; background:#1e293b; border:none; color:#ffffff; padding:0.5rem 0.75rem; border-radius:0.5rem; cursor:pointer; font-weight:700;">✕ Fechar</button>
+    <h3 style="font-size:1.5rem; font-weight:800; color:#ffffff; margin-bottom:1rem;">Contato e Suporte ao Usuário</h3>
+    <p>Para dúvidas técnicas, suporte operacional ou solicitações de proteção de dados (LGPD):</p>
+    <ul style="margin-left:1.25rem; margin-top:0.75rem; line-height:1.8;">
+      <li><strong>Suporte Técnico:</strong> suporte@digitaltecnologia.com.br</li>
+      <li><strong>Encarregado de Dados (DPO):</strong> privacidade@digitaltecnologia.com.br</li>
+      <li><strong>Atendimento Operacional:</strong> Segunda a Sexta, das 08h às 18h</li>
+    </ul>
   </div>
 </div>
 
@@ -278,6 +364,10 @@
   function fecharModalPrivacidade() { document.getElementById('modalPoliticaPrivacidade').style.display = 'none'; }
   function abrirModalTermos(e) { if (e) e.preventDefault(); document.getElementById('modalTermosUso').style.display = 'block'; }
   function fecharModalTermos() { document.getElementById('modalTermosUso').style.display = 'none'; }
+  function abrirModalSobre(e) { if (e) e.preventDefault(); document.getElementById('modalSobreNos').style.display = 'block'; }
+  function fecharModalSobre() { document.getElementById('modalSobreNos').style.display = 'none'; }
+  function abrirModalContato(e) { if (e) e.preventDefault(); document.getElementById('modalContato').style.display = 'block'; }
+  function fecharModalContato() { document.getElementById('modalContato').style.display = 'none'; }
   function abrirModalConhecimento(e) { 
     if (e) e.preventDefault(); 
     document.getElementById('modalCentralConhecimento').style.display = 'block';
@@ -1425,7 +1515,27 @@
                 </div>
                 <div class="field">
                   <label>Senha de Acesso</label>
-                  <input id="usuarioSenha" type="text" placeholder="Mínimo 6 caracteres" class="premium-input">
+                  <div class="input-icon">
+                    <input id="usuarioSenha" type="password" placeholder="Mínimo 6 caracteres" class="premium-input" autocomplete="new-password">
+                    <button class="icon-btn" type="button"
+                      onclick="toggleSenha('usuarioSenha', this)"
+                      aria-label="Mostrar/ocultar senha"
+                      title="Mostrar/ocultar senha">
+                      <span class="cam-icon cam-closed">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M4 7a3 3 0 0 1 3-3h6l2 2h2a3 3 0 0 1 3 3v7a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7z"></path>
+                          <path d="M9.5 12a2.5 2.5 0 1 0 5 0a2.5 2.5 0 0 0-5 0z"></path>
+                          <path d="M3 3l18 18" class="stroke"></path>
+                        </svg>
+                      </span>
+                      <span class="cam-icon cam-open" style="display:none">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M4 7a3 3 0 0 1 3-3h6l2 2h2a3 3 0 0 1 3 3v7a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7z"></path>
+                          <path d="M9.5 12a2.5 2.5 0 1 0 5 0a2.5 2.5 0 0 0-5 0z"></path>
+                        </svg>
+                      </span>
+                    </button>
+                  </div>
                 </div>
               </div>
 
@@ -1467,7 +1577,7 @@
 
               <div class="contracts-selection-grid">
                 <label class="premium-check-card">
-                  <input type="checkbox" id="acessoFerroport" checked>
+                  <input type="checkbox" id="acessoFerroport">
                   <div class="check-content">
                     <strong>Ferroport</strong>
                     <span>Presença e Equipe</span>
@@ -1540,7 +1650,7 @@
                     <option value="">-- Selecione o Contrato --</option>
                     <option value="ferroport">Ferroport</option>
                     <option value="technip">TechNip</option>
-                    <option value="pta">PTA IVECO</option>
+                    <option value="pta-inveco">PTA IVECO</option>
                     <option value="pta-hilux">PTA HILUX</option>
                     <option value="veiculos-leves">Veículos leves</option>
                     <option value="iveco-sem-pta">IVECO sem PTA</option>
@@ -1623,6 +1733,9 @@ var state;
   };
   const txt = (id, value = "") => { const el = $(id); if (el) el.textContent = value; };
   const html = (id, value = "") => { const el = $(id); if (el) el.innerHTML = value; };
+  const esc = (value) => String(value ?? "").replace(/[&<>"']/g, (c) => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+  }[c]));
   function toast(message, type = "success") {
     const stack = $("toastStack");
     if (!stack || !message) return;
@@ -2857,9 +2970,9 @@ var state;
       tr.className = naoOk > 0 ? "row-alert" : "row-ok";
       tr.innerHTML = `
         <td>${item.dataBR || formatarDataBR(item.dataISO)}</td>
-        <td>${item.veiculo || ""}</td>
-        <td><span class="plate-badge">${item.placa || ""}</span></td>
-        <td>${item.responsavel || ""}</td>
+        <td>${esc(item.veiculo)}</td>
+        <td><span class="plate-badge">${esc(item.placa)}</span></td>
+        <td>${esc(item.responsavel)}</td>
         <td><span class="status-badge ${naoOk > 0 ? "is-alert" : "is-ok"}">${naoOk}</span></td>
         <td class="row-actions"></td>
       `;
@@ -3204,7 +3317,7 @@ var state;
     if ($("usuarioDepartamento")) $("usuarioDepartamento").value = "";
     if ($("usuarioSetor")) $("usuarioSetor").value = "";
     if ($("usuarioAtivo")) $("usuarioAtivo").checked = true;
-    setAllowedContractsInForm(["ferroport", "technip"]);
+    setAllowedContractsInForm([]);
   }
 
   async function salvarAcessoUsuario() {
@@ -3226,12 +3339,15 @@ var state;
       if (!nome) return alert("Informe o nome.");
       if (!email) return alert("Informe o e-mail.");
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return alert("Informe um e-mail válido.");
-      
-      // Senha obrigatória apenas para novos usuários
+
+      // Senha obrigatória para novos usuários; se informada numa edição, também precisa ser válida
       if (!isUpdate && (!senha || senha.length < 6)) {
         return alert("Digite uma senha com pelo menos 6 caracteres para o novo usuário.");
       }
-      
+      if (isUpdate && senha && senha.length < 6) {
+        return alert("A nova senha deve ter pelo menos 6 caracteres.");
+      }
+
       if (!allowed.length) return alert("Selecione pelo menos um contrato.");
 
       const agora = agoraISO();
@@ -3250,46 +3366,9 @@ var state;
         } catch {}
       }
 
-      if (isUpdate) {
-        // Atualização direta no Firestore para permissões e dados básicos
-        const updateData = {
-          nome,
-          role,
-          matricula,
-          funcao,
-          departamento,
-          setor,
-          allowedContracts: allowed,
-          ativo,
-          atualizadoEm: agora
-        };
-        if (senha) updateData.senhaProvisoria = senha; // Se informada, salva como lembrete
-
-        await state.refs.acessos.doc(state.editingAccessId).set(updateData, { merge: true });
-        
-        // Sincronizar com a coleção de perfis (users) se existir
-        const userSnap = await state.db.collection("users").where("email", "==", email).get();
-        if (!userSnap.empty) {
-          const batch = state.db.batch();
-          userSnap.docs.forEach(doc => {
-            batch.set(doc.ref, { 
-              nome, 
-              role, 
-              matricula,
-              funcao,
-              departamento,
-              setor,
-              allowedContracts: allowed, 
-              ativo, 
-              atualizadoEm: agora 
-            }, { merge: true });
-          });
-          await batch.commit();
-        }
-
-        alert("Permissões e dados cadastrais do usuário atualizados com sucesso.");
-      } else {
-        // Criação de novo usuário via Firebase Function
+      if (senha) {
+        // Criação de novo usuário OU troca de senha: sempre via Cloud Function,
+        // que autentica a alteração no Firebase Auth. A senha nunca é gravada no Firestore.
         if (!state.functions) return alert("Firebase Functions não inicializado.");
         const callable = state.functions.httpsCallable("createUserByManager");
         const resp = await callable({
@@ -3298,12 +3377,16 @@ var state;
           senha,
           role,
           allowedContracts: allowed,
-          ativo
+          ativo,
+          matricula,
+          funcao,
+          departamento,
+          setor
         });
         const resultado = resp?.data || {};
-        if (!resultado?.ok) throw new Error("A função não retornou sucesso ao criar o usuário.");
+        if (!resultado?.ok) throw new Error("A função não retornou sucesso ao salvar o usuário.");
 
-        // Salva os metadados localmente na coleção acessos para persistência imediata
+        // Mantém a coleção acessos (usada pelo fluxo de "primeiro acesso") em dia
         await state.refs.acessos.doc(email).set({
           nome,
           email,
@@ -3317,13 +3400,51 @@ var state;
           atualizadoEm: agora
         }, { merge: true });
 
-        alert("Novo usuário criado e metadados vinculados com sucesso.");
+        alert(isUpdate ? "Usuário atualizado e senha redefinida com sucesso." : "Novo usuário criado e metadados vinculados com sucesso.");
+      } else {
+        // Edição sem troca de senha: apenas permissões e dados cadastrais, direto no Firestore
+        const updateData = {
+          nome,
+          role,
+          matricula,
+          funcao,
+          departamento,
+          setor,
+          allowedContracts: allowed,
+          ativo,
+          atualizadoEm: agora
+        };
+
+        await state.refs.acessos.doc(state.editingAccessId).set(updateData, { merge: true });
+
+        // Sincronizar com a coleção de perfis (users) se existir
+        const userSnap = await state.db.collection("users").where("email", "==", email).get();
+        if (!userSnap.empty) {
+          const batch = state.db.batch();
+          userSnap.docs.forEach(doc => {
+            batch.set(doc.ref, {
+              nome,
+              role,
+              matricula,
+              funcao,
+              departamento,
+              setor,
+              allowedContracts: allowed,
+              ativo,
+              atualizadoEm: agora
+            }, { merge: true });
+          });
+          await batch.commit();
+        }
+
+        alert("Permissões e dados cadastrais do usuário atualizados com sucesso.");
       }
 
       limparFormularioUsuario();
     } catch (e) {
-      console.error(e);
-      alert("Erro ao salvar acesso:\n\n" + (e?.message || e));
+      console.error("Erro ao salvar acesso:", e);
+      const msg = e?.details || e?.message || (typeof e === 'string' ? e : JSON.stringify(e));
+      alert("Erro ao salvar acesso:\n\n" + msg);
     }
   }
 
@@ -3361,49 +3482,50 @@ var state;
     }
   }
 
-  async function excluirAcessoUsuario(emailDocId) {
-    try {
-      if (!state.isAdmin) return alert("Apenas Gestor pode apagar acessos.");
-      if (!emailDocId) return alert("Acesso inválido.");
+  function excluirAcessoUsuario(docId) {
+    if (!state.isAdmin) return alert("Apenas Gestor pode apagar acessos.");
+    const item = state.ACESSOS.find(x => x.id === docId);
+    const label = item?.nome || item?.email || docId;
 
-      const emailAtual = emailKey(state.auth.currentUser?.email || "");
-      if (emailKey(emailDocId) === emailAtual) return alert("Você não pode apagar o seu próprio acesso por aqui.");
+    const emailAtual = emailKey(state.auth.currentUser?.email || "");
+    if (emailKey(item?.email || docId) === emailAtual) return alert("Você não pode apagar o seu próprio acesso por aqui.");
 
-      if (!confirm(`Tem certeza que deseja apagar o acesso de:\n${emailDocId}\n\nEssa ação remove o acesso ao sistema.`)) return;
+    if (!confirm(`Tem certeza que deseja remover o acesso de "${label}"? Esta ação não pode ser desfeita.`)) return;
 
-      await state.refs.acessos.doc(emailDocId).delete();
+    (async () => {
+      try {
+        const emailDocId = item?.email || docId;
+        await state.refs.acessos.doc(emailDocId).delete();
 
-      const userSnap = await state.db.collection("users").where("email", "==", emailDocId).get();
-      if (!userSnap.empty) {
-        const batch = state.db.batch();
-        userSnap.docs.forEach(doc => batch.delete(doc.ref));
-        await batch.commit();
+        const userSnap = await state.db.collection("users").where("email", "==", emailDocId).get();
+        if (!userSnap.empty) {
+          const batch = state.db.batch();
+          userSnap.docs.forEach(doc => batch.delete(doc.ref));
+          await batch.commit();
+        }
+
+        alert("Acesso removido com sucesso.");
+      } catch (e) {
+        console.error(e);
+        alert("Erro ao remover acesso:\n\n" + (e?.message || e));
       }
-
-      alert("Acesso removido com sucesso.");
-    } catch (e) {
-      console.error(e);
-      alert("Erro ao excluir acesso:\n\n" + (e?.message || e));
-    }
+    })();
   }
 
-  async function alternarStatusAcesso(docId, ativar) {
+  async function alternarStatusUsuario(docId, ativar) {
     try {
-      if (!state.isAdmin) return alert("Apenas Gestor pode alterar acesso.");
-      if (!docId) return;
+      if (!state.isAdmin) return alert("Apenas Gestor pode alterar status.");
       const emailAtual = emailKey(state.auth.currentUser?.email || "");
       if (emailKey(docId) === emailAtual && !ativar) return alert("Você não pode bloquear o seu próprio acesso por aqui.");
-
-      await state.refs.acessos.doc(docId).set({ ativo: !!ativar, atualizadoEm: agoraISO() }, { merge: true });
+      const agora = agoraISO();
+      await state.refs.acessos.doc(docId).set({ ativo: !!ativar, atualizadoEm: agora }, { merge: true });
 
       const userSnap = await state.db.collection("users").where("email", "==", emailKey(docId)).get();
       if (!userSnap.empty) {
         const batch = state.db.batch();
-        userSnap.docs.forEach(doc => batch.set(doc.ref, { ativo: !!ativar, atualizadoEm: agoraISO() }, { merge: true }));
+        userSnap.docs.forEach(doc => batch.set(doc.ref, { ativo: !!ativar, atualizadoEm: agora }, { merge: true }));
         await batch.commit();
       }
-
-      alert(ativar ? "Acesso ativado com sucesso." : "Acesso bloqueado com sucesso.");
     } catch (e) {
       console.error(e);
       alert("Erro ao alterar status:\n\n" + (e?.message || e));
@@ -3435,11 +3557,11 @@ var state;
           <input type="checkbox" class="chk-usuario-bulk" value="${item.id}" style="width:16px; height:16px; margin:0; cursor:pointer; vertical-align:middle;">
         </td>
         <td>
-          <div style="font-weight:800; color:var(--text);">${item.nome || ""}</div>
-          <div class="muted tiny">${item.email || ""}</div>
+          <div style="font-weight:800; color:var(--text); line-height:1.3;">${esc(item.nome)}</div>
+          <div class="muted tiny" style="word-break:break-all; font-weight:500; margin-top:2px;">${esc(item.email)}</div>
         </td>
         <td><span class="role-badge ${item.role === 'gestor' ? 'admin' : ''}">${item.role === "gestor" ? "Gestor" : "Técnico"}</span></td>
-        <td><div class="contract-tags">${(item.allowedContracts || []).map(c => `<span class="tag-mini c-${c}">${nomeContratoBonito(c)}</span>`).join("") || "—"}</div></td>
+        <td><div class="contract-tags">${(item.allowedContracts || []).map(c => `<span class="tag-mini c-${esc(c)}">${esc(nomeContratoBonito(c))}</span>`).join("") || "—"}</div></td>
         <td class="row-actions">
           <div class="btn-group-mini">
             <button class="btn-icon" onclick="editarAcessoUsuario('${item.id}')" title="Editar Usuário">
@@ -3533,30 +3655,22 @@ var state;
     try {
       if (!email) return alert("Digite o e-mail liberado pelo gestor.");
       if (!senha || senha.length < 6) return alert("Digite uma senha com pelo menos 6 caracteres.");
+      if (!state.functions) return alert("Firebase Functions não inicializado.");
 
-      const accessSnap = await state.refs.acessos.doc(email).get();
-      if (!accessSnap.exists) return alert("Esse e-mail ainda não foi liberado pelo gestor.");
-
-      const access = accessSnap.data() || {};
-      if (access.ativo === false) return alert("Seu acesso está inativo. Procure o gestor.");
+      // A conta só é criada no Firebase Auth depois que o servidor confirma,
+      // em access_by_email, que esse e-mail foi liberado pelo gestor.
+      const callable = state.functions.httpsCallable("criarPrimeiroAcesso");
+      const resp = await callable({ email, senha });
+      if (!resp?.data?.ok) throw new Error("Não foi possível preparar o primeiro acesso.");
 
       let cred = null;
-
       try {
-        cred = await state.auth.createUserWithEmailAndPassword(email, senha);
-      } catch (e) {
-        if (e?.code === "auth/email-already-in-use") {
-          try {
-            cred = await state.auth.signInWithEmailAndPassword(email, senha);
-          } catch (loginErr) {
-            if (["auth/wrong-password", "auth/invalid-credential"].includes(loginErr?.code)) {
-              return alert("Esse e-mail já foi cadastrado. Use a senha correta para entrar ou clique em 'Esqueci minha senha'.");
-            }
-            throw loginErr;
-          }
-        } else {
-          throw e;
+        cred = await state.auth.signInWithEmailAndPassword(email, senha);
+      } catch (loginErr) {
+        if (["auth/wrong-password", "auth/invalid-credential"].includes(loginErr?.code)) {
+          return alert("Esse e-mail já foi cadastrado. Use a senha correta para entrar ou clique em 'Esqueci minha senha'.");
         }
+        throw loginErr;
       }
 
       if (!cred?.user?.uid) throw new Error("Não foi possível concluir o cadastro do usuário.");
@@ -3749,8 +3863,8 @@ var state;
       const tr = document.createElement("tr");
       tr.innerHTML = `
         <td>${item.dataBR || formatarDataBR(item.dataISO)}</td>
-        <td class="col-local" style="display:${isTechnip ? 'table-cell' : 'none'}">${item.localAtendimento || "—"}</td>
-        <td>${Array.isArray(item.pessoas) ? item.pessoas.join(", ") : ""}</td>
+        <td class="col-local" style="display:${isTechnip ? 'table-cell' : 'none'}">${esc(item.localAtendimento) || "—"}</td>
+        <td>${Array.isArray(item.pessoas) ? item.pessoas.map(esc).join(", ") : ""}</td>
         <td class="row-actions"></td>
       `;
 
@@ -3915,13 +4029,13 @@ var state;
 
       const tr = document.createElement("tr");
       tr.innerHTML = `
-        <td style="font-weight: 700; color: var(--text); vertical-align: middle;">${nome}</td>
-        <td><input type="text" id="meta_mat_${idSafe}" class="premium-input" style="padding: 6px 10px; font-size:13px;" value="${mat}" placeholder="Ex: 552" /></td>
-        <td><input type="text" id="meta_fun_${idSafe}" class="premium-input" style="padding: 6px 10px; font-size:13px;" value="${fun}" placeholder="Ex: 55 - AUXILIAR" /></td>
-        <td><input type="text" id="meta_dep_${idSafe}" class="premium-input" style="padding: 6px 10px; font-size:13px;" value="${dep}" placeholder="Ex: OMS - Manutenção" /></td>
-        <td><input type="text" id="meta_set_${idSafe}" class="premium-input" style="padding: 6px 10px; font-size:13px;" value="${set}" placeholder="Ex: EQUIPE MANUTENCAO" /></td>
+        <td style="font-weight: 700; color: var(--text); vertical-align: middle;">${esc(nome)}</td>
+        <td><input type="text" id="meta_mat_${idSafe}" class="premium-input" style="padding: 6px 10px; font-size:13px;" value="${esc(mat)}" placeholder="Ex: 552" /></td>
+        <td><input type="text" id="meta_fun_${idSafe}" class="premium-input" style="padding: 6px 10px; font-size:13px;" value="${esc(fun)}" placeholder="Ex: 55 - AUXILIAR" /></td>
+        <td><input type="text" id="meta_dep_${idSafe}" class="premium-input" style="padding: 6px 10px; font-size:13px;" value="${esc(dep)}" placeholder="Ex: OMS - Manutenção" /></td>
+        <td><input type="text" id="meta_set_${idSafe}" class="premium-input" style="padding: 6px 10px; font-size:13px;" value="${esc(set)}" placeholder="Ex: EQUIPE MANUTENCAO" /></td>
         <td class="center" style="vertical-align: middle;">
-          <button class="btn secondary small" type="button" onclick="salvarMetadadoIndividual('${nome.replace(/'/g, "\\'")}')" title="Salvar este colaborador">Salvar</button>
+          <button class="btn secondary small" type="button" onclick="salvarMetadadoIndividual('${esc(nome).replace(/'/g, "\\'")}')" title="Salvar este colaborador">Salvar</button>
         </td>
       `;
       tbody.appendChild(tr);
@@ -4210,8 +4324,8 @@ var state;
         tbody.innerHTML += `
           <tr>
             <td>${item.dataBR || formatarDataBR(item.dataISO)}</td>
-            <td class="col-local" style="display:${isTechnip ? 'table-cell' : 'none'}">${item.localAtendimento || "—"}</td>
-            <td>${Array.isArray(item.pessoas) ? item.pessoas.join(", ") : ""}</td>
+            <td class="col-local" style="display:${isTechnip ? 'table-cell' : 'none'}">${esc(item.localAtendimento) || "—"}</td>
+            <td>${Array.isArray(item.pessoas) ? item.pessoas.map(esc).join(", ") : ""}</td>
           </tr>
         `;
       });
@@ -4231,8 +4345,8 @@ var state;
         pMes.innerHTML += `
           <tr>
             <td style="white-space:nowrap; font-weight:700;">${item.dataBR || formatarDataBR(item.dataISO)}</td>
-            <td class="col-local" style="display:${isTechnip ? 'table-cell' : 'none'}">${item.localAtendimento || "—"}</td>
-            <td>${Array.isArray(item.pessoas) ? item.pessoas.join(", ") : ""}</td>
+            <td class="col-local" style="display:${isTechnip ? 'table-cell' : 'none'}">${esc(item.localAtendimento) || "—"}</td>
+            <td>${Array.isArray(item.pessoas) ? item.pessoas.map(esc).join(", ") : ""}</td>
           </tr>
         `;
       });
@@ -4243,8 +4357,8 @@ var state;
       const todosNomes = new Set();
       itensMes.forEach(x => (x.pessoas || []).forEach(p => todosNomes.add(p)));
       const listaOrdenada = Array.from(todosNomes).sort();
-      pNomes.innerHTML = listaOrdenada.length 
-        ? listaOrdenada.map(n => `<span style="display:inline-block; border:1px solid #ddd; padding:2px 8px; margin:2px; border-radius:4px;">${n}</span>`).join(" ")
+      pNomes.innerHTML = listaOrdenada.length
+        ? listaOrdenada.map(n => `<span style="display:inline-block; border:1px solid #ddd; padding:2px 8px; margin:2px; border-radius:4px;">${esc(n)}</span>`).join(" ")
         : '<span class="muted">Nenhum registro encontrado no período.</span>';
     }
   }
@@ -4605,11 +4719,11 @@ var state;
       const tr = document.createElement("tr");
       tr.innerHTML = `
         <td>${item.dataBR || formatarDataBR(item.dataISO)}</td>
-        <td>${item.condutor || ""}</td>
+        <td>${esc(item.condutor)}</td>
         <td>${item.kmInicial ?? ""}</td>
         <td>${item.kmFinal ?? ""}</td>
-        <td>${item.local || ""}</td>
-        <td>${item.descricao || ""}</td>
+        <td>${esc(item.local)}</td>
+        <td>${esc(item.descricao)}</td>
         <td>${item.assinaturaDataUrl ? `<img src="${item.assinaturaDataUrl}" alt="Assinatura" class="sig-thumb" />` : "—"}</td>
         <td class="row-actions"></td>
       `;
@@ -4866,7 +4980,7 @@ var state;
         tbodyRank.innerHTML += `
           <tr>
             <td>${idx + 1}</td>
-            <td>${r.nome}</td>
+            <td>${esc(r.nome)}</td>
             <td>${r.dias}</td>
             <td><div class="bar"><div class="bar-fill" style="width:${Math.round((r.dias / maxDias) * 100)}%"></div></div></td>
           </tr>
@@ -4878,7 +4992,7 @@ var state;
     if (pRank) {
       pRank.innerHTML = "";
       ranking.slice(0, 40).forEach((r, idx) => {
-        pRank.innerHTML += `<tr><td>${idx + 1}</td><td>${r.nome}</td><td>${r.dias}</td></tr>`;
+        pRank.innerHTML += `<tr><td>${idx + 1}</td><td>${esc(r.nome)}</td><td>${r.dias}</td></tr>`;
       });
     }
 
@@ -4965,7 +5079,7 @@ var state;
       $(id)?.addEventListener("click", () => $(id).src && openImgModal($(id).src));
     });
 
-    setAllowedContractsInForm(["ferroport", "technip"]);
+    setAllowedContractsInForm([]);
     atualizarResumoFormularioVeiculosLeves();
 
     window.addEventListener("resize", () => {
