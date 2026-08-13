@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+User-agent: Mediapartners-Google
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+Sitemap: https://contratos-bice.vercel.app/sitemap.xml
