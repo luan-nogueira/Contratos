@@ -111,7 +111,11 @@ service cloud.firestore {
     }
 
     match /access_by_email/{email} {
-      allow get: if true;
+      // Antes era "if true" (qualquer pessoa, sem login, podia ler o cadastro
+      // de qualquer colaborador pelo e-mail). A checagem de "primeiro acesso"
+      // agora roda no servidor (Cloud Function criarPrimeiroAcesso), então só
+      // o próprio usuário autenticado precisa ler o seu registro.
+      allow get: if signedIn() && authEmail() == email;
       allow list: if isGestor();
       allow create, delete: if isGestor();
 

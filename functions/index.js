@@ -1,4 +1,4 @@
-const functions = require("firebase-functions");
+const functions = require("firebase-functions/v1");
 const admin = require("firebase-admin");
 
 admin.initializeApp();
@@ -108,7 +108,7 @@ exports.createUserByManager = functions.region("southamerica-east1").https.onCal
     return { ok: true, uid: userRecord.uid, email };
   } catch (error) {
     console.error("createUserByManager error:", error);
-    
+
     // Se já é um HttpsError do Firebase, relança diretamente
     if (error instanceof functions.https.HttpsError) {
       throw error;

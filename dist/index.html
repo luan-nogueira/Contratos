@@ -13,7 +13,7 @@
   <link rel="manifest" href="manifest.json" />
   <link rel="apple-touch-icon" href="logo-digital.png" />
   <link rel="icon" href="logo-digital.png" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=2.4.1" />
 
   <meta name="description" content="Control Hub — Plataforma de gestão operacional de contratos industriais, controle de presença de equipes, auditoria de contratos Ferroport & TechNip e checklists de frotas e equipamentos." />
   <meta name="keywords" content="gestão de contratos, segurança industrial, diário de bordo, checklist de equipamentos, controle de presença, ferroport, technip, QSMS, digital tecnologia, emive" />
@@ -38,7 +38,28 @@
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js').catch(err => console.log('SW registration failed:', err));
+        navigator.serviceWorker.register('/sw.js').then((reg) => {
+          reg.update();
+          reg.addEventListener('updatefound', () => {
+            const newWorker = reg.installing;
+            if (newWorker) {
+              newWorker.addEventListener('statechange', () => {
+                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                  console.log('[PWA] Nova versão instalada. Recarregando...');
+                  window.location.reload();
+                }
+              });
+            }
+          });
+        }).catch(err => console.log('SW registration failed:', err));
+      });
+
+      let refreshing = false;
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (!refreshing) {
+          refreshing = true;
+          window.location.reload();
+        }
       });
     }
   </script>
