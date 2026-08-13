@@ -13,7 +13,7 @@
   <link rel="manifest" href="manifest.json" />
   <link rel="apple-touch-icon" href="logo-digital.png" />
   <link rel="icon" href="logo-digital.png" />
-  <link rel="stylesheet" href="style.css?v=2.4.2" />
+  <link rel="stylesheet" href="style.css?v=2.4.3" />
 
   <meta name="description" content="Control Hub — Plataforma de gestão operacional de contratos industriais, controle de presença de equipes, auditoria de contratos Ferroport & TechNip e checklists de frotas e equipamentos." />
   <meta name="keywords" content="gestão de contratos, segurança industrial, diário de bordo, checklist de equipamentos, controle de presença, ferroport, technip, QSMS, digital tecnologia, emive" />
@@ -2231,6 +2231,8 @@ var state;
   function mostrarApp(logado) {
     show("loginBox", !logado, "flex");
     show("appRoot", logado, "block");
+    const nav = document.querySelector(".landing-navbar");
+    if (nav) nav.style.display = logado ? "none" : "flex";
   }
 
   function desligarFn(name) {
