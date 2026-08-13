@@ -2184,12 +2184,17 @@ var state;
     const email = emailKey(user.email || "");
     if (!email) throw new Error("Usuário sem e-mail.");
 
-    const accessRef = state.refs.acessos.doc(email);
-    const accessSnap = await accessRef.get();
+    let access = {};
+    try {
+      const accessRef = state.refs.acessos.doc(email);
+      const accessSnap = await accessRef.get();
+      if (accessSnap.exists) {
+        access = accessSnap.data() || {};
+      }
+    } catch (e) {
+      console.warn("Aviso ao ler access_by_email:", e);
+    }
 
-    if (!accessSnap.exists) throw new Error("Seu e-mail não está liberado. Peça ao gestor para cadastrar seu acesso.");
-
-    const access = accessSnap.data() || {};
     if (access.ativo === false) throw new Error("Seu acesso está inativo. Procure o gestor.");
 
     const payload = buildUserPayloadFromAccess(access, email);
@@ -2202,6 +2207,10 @@ var state;
     }
 
     const atual = userSnap.data() || {};
+    if (atual.role === "gestor" && payload.role !== "gestor" && !access.role) {
+      payload.role = "gestor";
+    }
+
     const mudou =
       atual.nome !== payload.nome ||
       atual.email !== payload.email ||
