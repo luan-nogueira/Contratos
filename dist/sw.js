@@ -1,8 +1,8 @@
-const CACHE_NAME = 'digital-contratos-v7';
+const CACHE_NAME = 'digital-contratos-v8';
 const ASSETS = [
   '/',
   '/index.html',
-  '/style.css?v=2.4.1',
+  '/style.css?v=2.4.2',
   '/logo-digital.png',
   '/logo-emive.png'
 ];

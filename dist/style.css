@@ -4887,3 +4887,10 @@ img, canvas, video {
   color: #94a3b8;
   line-height: 1.5;
 }
+
+.landing-hero,
+.adsense-wrapper,
+.modules-section {
+  position: relative;
+  z-index: 5;
+}
