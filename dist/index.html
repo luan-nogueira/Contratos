@@ -70,15 +70,100 @@
 </head>
 <body>
 
-<section class="login-page animate-fade" id="loginBox">
+<!-- Header / Barra de Navegação Pública -->
+<header class="landing-navbar">
+  <a href="/" class="landing-brand">
+    <img src="logo-digital.png" alt="Digital Logo" style="height: 28px;">
+    <span>Control Hub</span>
+  </a>
+  <nav class="landing-nav-links">
+    <a href="#modulos">Módulos</a>
+    <a href="guias-e-artigos.html">Guias & Artigos</a>
+    <a href="sobre-nos.html">Sobre Nós</a>
+    <a href="contato.html">Contato</a>
+    <button type="button" class="btn-cta-access" onclick="focarLogin()">🔐 Acessar Sistema</button>
+  </nav>
+</header>
+
+<section class="login-page animate-fade" id="loginBox" style="min-height: auto; padding-top: 1rem;">
   <div class="login-bg-animation"></div>
+
+  <!-- Hero Section Pública de Apresentação -->
+  <div class="landing-hero">
+    <span class="hero-badge">✨ Plataforma de Inteligência Operacional & QSMS</span>
+    <h1 class="hero-title">Gestão Inteligente de Contratos Industriais e Frotas em Tempo Real</h1>
+    <p class="hero-subtitle">
+      Centralize o controle de presença de equipes, checklists pré-operacionais de frotas e diários de bordo para os contratos <strong>Ferroport</strong>, <strong>TechNip</strong> e operações industriais.
+    </p>
+
+    <div class="hero-actions">
+      <button type="button" class="btn-hero-primary" onclick="focarLogin()">🚀 Acessar o Sistema</button>
+      <a href="guias-e-artigos.html" class="btn-hero-secondary">📖 Central de Conhecimento & Guias</a>
+    </div>
+
+    <div class="hero-stats-grid">
+      <div class="stat-card">
+        <strong>⚡ 100% Auditável</strong>
+        <span>Conformidade total com a LGPD</span>
+      </div>
+      <div class="stat-card">
+        <strong>🛡️ Segurança NR-35</strong>
+        <span>Checklists diários de frotas & PTA</span>
+      </div>
+      <div class="stat-card">
+        <strong>📊 Relatórios Automatizados</strong>
+        <span>Exportação direta para Excel estilizado</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bloco de Anúncios Google AdSense Responsivo -->
+  <div class="adsense-wrapper">
+    <span class="adsense-label">Publicidade Institucional</span>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-4073257188582803"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <!-- Módulos Operacionais -->
+  <div class="modules-section" id="modulos">
+    <h2 class="section-title">Módulos & Funcionalidades do Sistema</h2>
+    <p class="section-subtitle">Tudo o que sua equipe precisa para gerenciar contratos com máxima precisão e governança.</p>
+
+    <div class="modules-cards-grid">
+      <div class="module-card">
+        <span class="module-icon">🚜</span>
+        <h3>Inspeção de Frotas & PTA</h3>
+        <p>Checklists preventivos diários para Plataformas de Trabalho em Altura (IVECO & Hilux) em estrita conformidade com a NR-35.</p>
+      </div>
+      <div class="module-card">
+        <span class="module-icon">⏱️</span>
+        <h3>Controle de Presença</h3>
+        <p>Registro auditável da alocação de técnicos e operadores nos contratos Ferroport e TechNip com marcação de data/hora.</p>
+      </div>
+      <div class="module-card">
+        <span class="module-icon">📝</span>
+        <h3>Diário de Bordo Digital</h3>
+        <p>Acompanhamento instantâneo de ocorrências, substituição de pneus, combustíveis e manutenções em tempo real.</p>
+      </div>
+      <div class="module-card">
+        <span class="module-icon">🔐</span>
+        <h3>Gestão de Acessos</h3>
+        <p>Controle de permissões por perfil (Gestor e Técnico) vinculado aos contratos habilitados para máxima segurança.</p>
+      </div>
+    </div>
+  </div>
 
   <!-- Botão de tema flutuante no canto superior direito -->
   <button class="login-theme-btn" type="button" id="btnTemaLogin" onclick="toggleTema()" aria-label="Alternar tema" title="Alternar tema">
     <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/></svg>
   </button>
 
-  <div class="login-card">
+  <!-- Área Restrita de Login -->
+  <div class="login-card" id="loginBoxCard" style="margin-top: 2rem;">
     <!-- Logos -->
     <div class="login-logos">
       <img src="logo-digital.png" alt="Logo Digital" class="login-logo-img">
@@ -3796,8 +3881,20 @@ var state;
     }
   }
 
+  function focarLogin() {
+    const el = document.getElementById("loginBoxCard") || document.getElementById("loginEmail");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "center" });
+      setTimeout(() => {
+        const input = document.getElementById("loginEmail");
+        if (input) input.focus();
+      }, 400);
+    }
+  }
+
   async function logout() { await state.auth.signOut(); }
 
+  window.focarLogin = focarLogin;
   window.login = login;
   window.esqueciSenha = esqueciSenha;
   window.logout = logout;
