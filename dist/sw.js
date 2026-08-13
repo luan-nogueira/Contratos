@@ -37,13 +37,8 @@ self.addEventListener('fetch', (event) => {
 
   const url = new URL(event.request.url);
 
-  // Requisições para domínios externos (Firebase, APIs, CDNs)
-  if (url.origin !== location.origin) {
-    event.respondWith(
-      fetch(event.request).catch(() => caches.match(event.request))
-    );
-    return;
-  }
+  // Ignora completamente requisições para domínios externos (Firebase, APIs, Cloud Functions)
+  if (url.origin !== location.origin) return;
 
   // Network-First para todos os arquivos da mesma origem (CSS, JS, HTML)
   event.respondWith(

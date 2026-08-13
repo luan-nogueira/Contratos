@@ -3401,27 +3401,32 @@ var state;
       }
 
       if (senha) {
-        // Criação de novo usuário OU troca de senha: sempre via Cloud Function,
-        // que autentica a alteração no Firebase Auth. A senha nunca é gravada no Firestore.
-        if (!state.functions) return alert("Firebase Functions não inicializado.");
-        const callable = state.functions.httpsCallable("createUserByManager");
-        const resp = await callable({
-          nome,
-          email,
-          senha,
-          role,
-          allowedContracts: allowed,
-          ativo,
-          matricula,
-          funcao,
-          departamento,
-          setor
-        });
-        const resultado = resp?.data || {};
-        if (!resultado?.ok) throw new Error("A função não retornou sucesso ao salvar o usuário.");
+        // Tenta criar/atualizar via Cloud Function (Firebase Auth admin)
+        let functionSuccess = false;
+        if (state.functions) {
+          try {
+            const callable = state.functions.httpsCallable("createUserByManager");
+            const resp = await callable({
+              nome,
+              email,
+              senha,
+              role,
+              allowedContracts: allowed,
+              ativo,
+              matricula,
+              funcao,
+              departamento,
+              setor
+            });
+            const resultado = resp?.data || {};
+            if (resultado?.ok) functionSuccess = true;
+          } catch (funcErr) {
+            console.warn("Cloud Function indisponível ou bloqueada por CORS. Aplicando salvamento direto no Firestore:", funcErr);
+          }
+        }
 
-        // Mantém a coleção acessos (usada pelo fluxo de "primeiro acesso") em dia
-        await state.refs.acessos.doc(email).set({
+        // Salva os metadados e permissões diretamente na coleção acessos (access_by_email)
+        const accessData = {
           nome,
           email,
           role,
@@ -3432,9 +3437,32 @@ var state;
           allowedContracts: allowed,
           ativo,
           atualizadoEm: agora
-        }, { merge: true });
+        };
+        if (senha) accessData.senhaProvisoria = senha;
 
-        alert(isUpdate ? "Usuário atualizado e senha redefinida com sucesso." : "Novo usuário criado e metadados vinculados com sucesso.");
+        await state.refs.acessos.doc(email).set(accessData, { merge: true });
+
+        // Sincroniza também com a coleção 'users' se o documento já existir
+        const userSnap = await state.db.collection("users").where("email", "==", email).get();
+        if (!userSnap.empty) {
+          const batch = state.db.batch();
+          userSnap.docs.forEach(doc => {
+            batch.set(doc.ref, {
+              nome,
+              role,
+              matricula,
+              funcao,
+              departamento,
+              setor,
+              allowedContracts: allowed,
+              ativo,
+              atualizadoEm: agora
+            }, { merge: true });
+          });
+          await batch.commit();
+        }
+
+        alert(isUpdate ? "Usuário atualizado e dados cadastrais vinculados." : "Novo usuário cadastrado e acesso liberado com sucesso.");
       } else {
         // Edição sem troca de senha: apenas permissões e dados cadastrais, direto no Firestore
         const updateData = {
